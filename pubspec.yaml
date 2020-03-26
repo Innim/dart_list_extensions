@@ -1,0 +1,19 @@
+name: list_ext
+description: Dart extension method for Iterable and List.
+version: 0.0.1
+author: Innim
+homepage: http://github.com/innim/
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
