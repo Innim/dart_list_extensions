@@ -8,8 +8,7 @@ extension IterableExtensions<E> on Iterable<E> {
   ///
   /// [getVal] should return value for sum up. It can be property of element,
   /// or any another value by element.
-  int sumOf(int getVal(E element)) =>
-      this.fold(0, (sum, e) => sum + getVal(e));
+  int sumOf(int getVal(E element)) => this.fold(0, (sum, e) => sum + getVal(e));
 
   /// Returns sum of double values by elements.
   ///
