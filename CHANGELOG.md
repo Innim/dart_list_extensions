@@ -1,3 +1,8 @@
+## [0.1.0] - 2020-03-27
+
+* Add an example.
+* Update package description.
+
 ## [0.0.1] - 2020-03-26
 
 * Method `countWhere()` - returns count of elements that satisfy the predicate [test].
