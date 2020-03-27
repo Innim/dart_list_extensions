@@ -26,6 +26,27 @@ void main() {
 
       expect(list.sumOfDouble((e) => e.doubleVal), 4.6);
     });
+
+    test('isNullOrEmpty/isNotNullOrEmpty for null iterable', () {
+      Iterable list;
+
+      expect(list.isNullOrEmpty, true);
+      expect(list.isNotNullOrEmpty, false);
+    });
+
+    test('isNullOrEmpty/isNotNullOrEmpty for empty iterable', () {
+      Iterable list = [];
+
+      expect(list.isNullOrEmpty, true);
+      expect(list.isNotNullOrEmpty, false);
+    });
+
+    test('isNullOrEmpty/isNotNullOrEmpty for not empty iterable', () {
+      final list = [1];
+
+      expect(list.isNullOrEmpty, false);
+      expect(list.isNotNullOrEmpty, true);
+    });
   });
 
   group('Iterable of int', () {
