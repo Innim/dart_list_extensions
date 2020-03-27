@@ -7,13 +7,7 @@ homepage: https://github.com/innim/
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
-dependencies:
-  flutter:
-    sdk: flutter
+# dependencies:
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-
-flutter:
+  test: ^1.14.2
