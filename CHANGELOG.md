@@ -1,3 +1,7 @@
+## Next release
+
+* Method `joinOf()` - get string value for each element and concatenates it with separator.
+
 ## [0.1.1] - 2020-03-27
 
 * Getter `isNullOrEmpty` - returns `true` if iterable is `null` or empty.

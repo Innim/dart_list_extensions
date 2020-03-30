@@ -47,6 +47,12 @@ void main() {
       expect(list.isNullOrEmpty, false);
       expect(list.isNotNullOrEmpty, true);
     });
+
+    test('join of object field', () {
+      final list = [_E(strVal: 'first'), _E(strVal: 'second')];
+
+      expect(list.joinOf((e) => e.strVal, ', '), 'first, second');
+    });
   });
 
   group('Iterable of int', () {

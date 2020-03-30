@@ -26,6 +26,13 @@ extension IterableExtensions<E> on Iterable<E> {
   /// or any another value by element.
   double sumOfDouble(double getVal(E element)) =>
       this.fold(0, (sum, e) => sum + getVal(e));
+
+  /// Get string value for each element and concatenates it with [separator].
+  ///
+  /// [getVal] used to get string value for element. It can be value of some
+  /// field, or custom stringify function.
+  String joinOf(String getVal(E element), [String separator = ""]) => this.fold(
+      '', (res, e) => res != '' ? res + separator + getVal(e) : getVal(e));
 }
 
 /// Extension methods for [Iterable] of int.
