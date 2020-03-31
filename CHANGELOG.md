@@ -1,6 +1,7 @@
 ## Next release
 
 * Method `joinOf()` - get string value for each element and concatenates it with separator.
+* Method `chunks()` - splits into chunks (shortcut for quiver `partition()`).
 
 ## [0.1.1] - 2020-03-27
 

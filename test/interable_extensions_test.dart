@@ -53,6 +53,12 @@ void main() {
 
       expect(list.joinOf((e) => e.strVal, ', '), 'first, second');
     });
+
+    test('split into chunks', () {
+      final list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      expect(list.chunks(3), [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]);
+    });
   });
 
   group('Iterable of int', () {

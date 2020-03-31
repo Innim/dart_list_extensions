@@ -1,3 +1,5 @@
+import 'package:quiver/iterables.dart';
+
 /// Extension methods for any [Iterable].
 extension IterableExtensions<E> on Iterable<E> {
   /// Returns `true` if iterable is `null` or empty.
@@ -33,6 +35,18 @@ extension IterableExtensions<E> on Iterable<E> {
   /// field, or custom stringify function.
   String joinOf(String getVal(E element), [String separator = ""]) => this.fold(
       '', (res, e) => res != '' ? res + separator + getVal(e) : getVal(e));
+
+  /// Splits into chunks of the specified size.
+  ///
+  /// Example:
+  /// ```
+  /// final res = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].chunks(3);
+  /// ```
+  /// Result:
+  /// ```
+  /// [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+  /// ```
+  Iterable<List<E>> chunks(int size) => partition(this, size);
 }
 
 /// Extension methods for [Iterable] of int.
