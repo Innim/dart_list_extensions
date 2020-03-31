@@ -2,6 +2,7 @@
 
 * Method `joinOf()` - get string value for each element and concatenates it with separator.
 * Method `chunks()` - splits into chunks (shortcut for quiver `partition()`).
+* Method `toMap()` - create `Map` from iterable (shortcut for `Map.fromIterable()`).
 
 ## [0.1.1] - 2020-03-27
 

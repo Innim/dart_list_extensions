@@ -57,7 +57,27 @@ void main() {
     test('split into chunks', () {
       final list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-      expect(list.chunks(3), [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]);
+      expect(list.chunks(3), [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [10]
+      ]);
+    });
+
+    test('get map from iterable', () {
+      final list = [1, 2, 3];
+
+      expect(
+          list.toMap(
+            (e) => 'K${e}',
+            (e) => 'V${e}',
+          ),
+          {
+            'K1': 'V1',
+            'K2': 'V2',
+            'K3': 'V3',
+          });
     });
   });
 

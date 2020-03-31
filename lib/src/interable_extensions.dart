@@ -47,6 +47,14 @@ extension IterableExtensions<E> on Iterable<E> {
   /// [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
   /// ```
   Iterable<List<E>> chunks(int size) => partition(this, size);
+
+  /// Creates a Map instance from the iterable.
+  ///
+  /// [getKey] used to get key for result Map.
+  /// [getVal] used to get value for result Map.
+  Map<TKey, TVal> toMap<TKey, TVal>(
+          TKey getKey(element), TVal getVal(element)) =>
+      Map.fromIterable(this, key: getKey, value: getVal);
 }
 
 /// Extension methods for [Iterable] of int.
