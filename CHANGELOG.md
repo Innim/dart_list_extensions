@@ -1,5 +1,8 @@
 ## Next release
 
+## [0.1.3] - 2020-04-01
+
+* Method `isUnorderedEquivalent()` - check equality of the elements of this and other iterables without considering order.
 
 ## [0.1.2+1] - 2020-03-31
 

@@ -79,6 +79,27 @@ void main() {
             'K3': 'V3',
           });
     });
+
+    test('unordered equivalent true if has same elements', () {
+      final list = [1, 2, 3];
+      final other = [2, 1, 3];
+
+      expect(list.isUnorderedEquivalent(other), true);
+    });
+
+    test('unordered equivalent false if has different elements', () {
+      final list = [1, 2, 3];
+      final other = [1, 2, 4];
+
+      expect(list.isUnorderedEquivalent(other), false);
+    });
+
+    test('unordered equivalent false if has different lenth', () {
+      final list = [1, 2, 3];
+      final other = [1, 2];
+
+      expect(list.isUnorderedEquivalent(other), false);
+    });
   });
 
   group('Iterable of int', () {
