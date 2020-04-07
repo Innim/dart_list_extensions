@@ -8,5 +8,11 @@ void main() {
 
       expect(list.copyWith(5), [1, 2, 3, 5]);
     });
+
+    test('copy null list with add element', () {
+      List<int> list;
+
+      expect(list.copyWith(5), [5]);
+    });
   });
 }

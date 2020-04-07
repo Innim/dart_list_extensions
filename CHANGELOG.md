@@ -1,5 +1,7 @@
 ## Next release
 
+* Method `copyWith()` support null list.
+
 ## [0.1.3] - 2020-04-01
 
 * Method `isUnorderedEquivalent()` - check equality of the elements of this and other iterables without considering order.
