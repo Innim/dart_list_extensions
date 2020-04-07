@@ -1,5 +1,6 @@
 ## Next release
 
+## [0.1.4] - 2020-04-07
 
 * Method `copyWithAll()` - copy current list with adding all elements at the end of new list.
 * Method `copyWith()` support null list.
