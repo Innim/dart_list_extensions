@@ -14,5 +14,20 @@ void main() {
 
       expect(list.copyWith(5), [5]);
     });
+
+    test('copy list with add elements', () {
+      final list = [1, 2, 3];
+
+      expect(list.copyWithAll([5, 6]), [1, 2, 3, 5, 6]);
+    });
+
+    test('copy null list with add elemens', () {
+      List<int> list;
+      final add = [5, 6];
+
+      final res = list.copyWithAll(add);
+      expect(res, [5, 6]);
+      expect(res == add, false);
+    });
   });
 }
