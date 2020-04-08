@@ -3,6 +3,7 @@ import 'package:quiver/iterables.dart';
 
 /// Extension methods for any [Iterable].
 extension IterableExtensions<E> on Iterable<E> {
+  // ignore: unused_field
   static final _unorderedEquality = UnorderedIterableEquality();
 
   /// Returns `true` if iterable is `null` or empty.

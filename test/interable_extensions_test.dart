@@ -94,7 +94,7 @@ void main() {
       expect(list.isUnorderedEquivalent(other), false);
     });
 
-    test('unordered equivalent false if has different lenth', () {
+    test('unordered equivalent false if has different length', () {
       final list = [1, 2, 3];
       final other = [1, 2];
 
