@@ -1,6 +1,6 @@
 # list_ext
 
-[![pub package](https://img.shields.io/pub/v/list_ext)](https://pub.dartlang.org/packages/url_launcher)
+[![pub package](https://img.shields.io/pub/v/list_ext)](https://pub.dartlang.org/packages/list_ext)
 
 Dart extension method for Iterable and List.
 

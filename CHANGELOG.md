@@ -1,5 +1,9 @@
 ## Next release
 
+## [0.1.5] - 2020-04-27
+
+* Method `firstWhereOrNull()` - return the first element that satisfies the given predicate or `null` if no element satisfies.
+
 ## [0.1.4] - 2020-04-07
 
 * Method `copyWithAll()` - copy current list with adding all elements at the end of new list.

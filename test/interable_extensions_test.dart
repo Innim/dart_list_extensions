@@ -80,6 +80,19 @@ void main() {
           });
     });
 
+    test('firstWhereOrNull should return first if exist', () {
+      final needle = _E(intVal: 1, strVal: 'first');
+      final list = [needle, _E(intVal: 2), _E(intVal: 1, strVal: 'second')];
+
+      expect(list.firstWhereOrNull((e) => e.intVal == 1), needle);
+    });
+
+    test('firstWhereOrNull should return null if not exist', () {
+      final list = [_E(intVal: 2), _E(intVal: 3)];
+
+      expect(list.firstWhereOrNull((e) => e.intVal == 1), null);
+    });
+
     test('unordered equivalent true if has same elements', () {
       final list = [1, 2, 3];
       final other = [2, 1, 3];
@@ -126,4 +139,9 @@ class _E {
   final bool boolVal;
 
   _E({this.intVal, this.doubleVal, this.strVal, this.boolVal});
+
+  @override
+  String toString() {
+    return '_E{intVal: $intVal, doubleVal: $doubleVal, strVal: $strVal, boolVal: $boolVal}';
+  }
 }
