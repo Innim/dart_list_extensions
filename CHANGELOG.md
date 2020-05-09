@@ -1,5 +1,7 @@
 ## Next release
 
+* Add classifier in README.
+
 ## [0.1.5] - 2020-04-27
 
 * Method `firstWhereOrNull()` - return the first element that satisfies the given predicate or `null` if no element satisfies.

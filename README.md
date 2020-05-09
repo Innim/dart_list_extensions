@@ -20,3 +20,45 @@ void main() {
   print('Sum: $sum');
 }
 ```
+
+## Methods classifier
+
+### Common
+
+* `countWhere()` - returns count of elements that satisfy the predicate.
+
+#### Equality
+* `isNullOrEmpty`/`isNotNullOrEmpty` - check for `null` or empty.
+* `isUnorderedEquivalent()` - check equality of the elements of two iterables without considering order.
+
+#### Search
+* `firstWhereOrNull()` - return the first found element or `null` if no element found.
+
+### Transformation
+
+#### Iterables
+* `chunks()` - splits into chunks of the specified size.
+
+#### String
+* `joinOf()` - get string value for each element and concatenates it with passed separator.
+
+#### Map
+* `toMap()` - creates a Map instance from the iterable.
+
+
+### Math
+
+* `sumOf()`/`sumOfDouble()` - returns sum of values by elements.
+
+There are specific version of methods for Iterables of num (`int` and `double`):
+
+* `sum()`.
+
+## `List` specific methods
+
+### Transformation
+
+#### List
+
+* `copyWith()` - Copy current list with adding element.
+* `copyWithAll()` - Copy current list with adding all elements from another list.
