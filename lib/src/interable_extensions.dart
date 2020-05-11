@@ -20,19 +20,6 @@ extension IterableExtensions<E> on Iterable<E> {
   int countWhere(bool test(E element)) =>
       this.fold(0, (count, e) => test(e) ? count + 1 : count);
 
-  /// Returns sum of int values by elements.
-  ///
-  /// [getVal] should return value for sum up. It can be property of element,
-  /// or any another value by element.
-  int sumOf(int getVal(E element)) => this.fold(0, (sum, e) => sum + getVal(e));
-
-  /// Returns sum of double values by elements.
-  ///
-  /// [getVal] should return value for sum up. It can be property of element,
-  /// or any another value by element.
-  double sumOfDouble(double getVal(E element)) =>
-      this.fold(0, (sum, e) => sum + getVal(e));
-
   /// Get string value for each element and concatenates it with [separator].
   ///
   /// [getVal] used to get string value for element. It can be value of some
@@ -75,6 +62,21 @@ extension IterableExtensions<E> on Iterable<E> {
   /// the other iterable, so that each pair are equal.
   bool isUnorderedEquivalent(Iterable<E> other) =>
       _unorderedEquality.equals(this, other);
+
+  // Math
+
+  /// Returns sum of int values by elements.
+  ///
+  /// [getVal] should return value for sum up. It can be property of element,
+  /// or any another value by element.
+  int sumOf(int getVal(E element)) => this.fold(0, (sum, e) => sum + getVal(e));
+
+  /// Returns sum of double values by elements.
+  ///
+  /// [getVal] should return value for sum up. It can be property of element,
+  /// or any another value by element.
+  double sumOfDouble(double getVal(E element)) =>
+      this.fold(0, (sum, e) => sum + getVal(e));
 }
 
 /// Extension methods for [Iterable] of int.
