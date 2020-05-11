@@ -15,18 +15,6 @@ void main() {
       expect(list.countWhere((e) => e.strVal == 'OK'), 2);
     });
 
-    test('sum of int elements property', () {
-      final list = [_E(intVal: 1), _E(intVal: 3)];
-
-      expect(list.sumOf((e) => e.intVal), 4);
-    });
-
-    test('sum of double elements property', () {
-      final list = [_E(doubleVal: 1.5), _E(doubleVal: 3.1)];
-
-      expect(list.sumOfDouble((e) => e.doubleVal), 4.6);
-    });
-
     test('isNullOrEmpty/isNotNullOrEmpty for null iterable', () {
       Iterable list;
 
@@ -112,6 +100,20 @@ void main() {
       final other = [1, 2];
 
       expect(list.isUnorderedEquivalent(other), false);
+    });
+
+    group('math', () {
+      test('sum of int elements property', () {
+        final list = [_E(intVal: 1), _E(intVal: 3)];
+
+        expect(list.sumOf((e) => e.intVal), 4);
+      });
+
+      test('sum of double elements property', () {
+        final list = [_E(doubleVal: 1.5), _E(doubleVal: 3.1)];
+
+        expect(list.sumOfDouble((e) => e.doubleVal), 4.6);
+      });
     });
   });
 
