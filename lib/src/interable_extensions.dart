@@ -77,16 +77,48 @@ extension IterableExtensions<E> on Iterable<E> {
   /// or any another value by element.
   double sumOfDouble(double getVal(E element)) =>
       this.fold(0, (sum, e) => sum + getVal(e));
+
+  /// Returns the average value of int values by elements.
+  ///
+  /// [getVal] should return value for calculate average.
+  /// It can be property of element, or any another value by element.
+  ///
+  /// If no elements, return `0`.
+  double avgOf(int getVal(E element)) {
+    final count = length;
+    return count > 0 ? sumOf(getVal) / count : 0;
+  }
+
+  /// Returns the average value of double values by elements.
+  ///
+  /// [getVal] should return value for calculate average.
+  /// It can be property of element, or any another value by element.
+  ///
+  /// If no elements, return `0`.
+  double avgOfDouble(double getVal(E element)) {
+    final count = length;
+    return count > 0 ? sumOfDouble(getVal) / count : 0;
+  }
 }
 
 /// Extension methods for [Iterable] of int.
 extension IntIterableExtensions on Iterable<int> {
   /// Returns sum of values.
   int sum() => this.fold(0, (sum, v) => sum + v);
+
+  /// Returns the average value of values.
+  ///
+  /// See [IterableExtensions.avgOf].
+  double avg() => this.isNotEmpty ? sum() / length : 0;
 }
 
 /// Extension methods for [Iterable] of double.
 extension DoubleIterableExtensions on Iterable<double> {
   /// Returns sum of values.
   double sum() => this.fold(0, (sum, v) => sum + v);
+
+  /// Returns the average value of values.
+  ///
+  /// See [IterableExtensions.avgOfDouble].
+  double avg() => this.isNotEmpty ? sum() / length : 0;
 }

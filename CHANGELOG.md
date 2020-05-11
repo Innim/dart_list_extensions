@@ -1,6 +1,9 @@
 ## Next release
 
 * Add classifier in README.
+* Method `avgOf()` - returns the average value of int values by elements.
+* Method `avgOfDouble()` - returns the average value of double values by elements.
+* Methods `avg()` for iterables of int and double.
 
 ## [0.1.5] - 2020-04-27
 

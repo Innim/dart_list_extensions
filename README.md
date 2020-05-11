@@ -49,10 +49,12 @@ void main() {
 ### Math
 
 * `sumOf()`/`sumOfDouble()` - returns sum of values by elements.
+* `avgOf()`/`avgOfDouble()` - returns the average value of values by elements.
 
 There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `sum()`.
+* `avg()`.
 
 ## `List` specific methods
 
