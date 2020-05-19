@@ -1,5 +1,7 @@
 ## Next release
 
+* Fixed repository url.
+
 ## [0.1.6] - 2020-05-11
 
 * Add classifier in README.
