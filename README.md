@@ -1,6 +1,7 @@
 # list_ext
 
 [![pub package](https://img.shields.io/pub/v/list_ext)](https://pub.dartlang.org/packages/list_ext)
+![Dart CI](https://github.com/Innim/dart_list_extensions/workflows/Dart%20CI/badge.svg?branch=master)
 
 Dart extension method for Iterable and List.
 
