@@ -34,6 +34,9 @@ void main() {
 #### Search
 * `firstWhereOrNull()` - return the first found element or `null` if no element found.
 
+#### Safe elements access
+* `tryElementAt()` - returns the element at the index if exists or `orElse` if it is out of range.
+
 ### Transformation
 
 #### Iterables

@@ -6,8 +6,10 @@ final _getNull = () => null;
 
 /// Extension methods for any [Iterable].
 extension IterableExtensions<E> on Iterable<E> {
-  /// Returns the element at the `index` if exists
-  /// or `orElse` if it is out of range.
+  // Common
+
+  /// Returns the element at the [index] if exists
+  /// or [orElse] if it is out of range.
   E tryElementAt(int index, {E orElse}) {
     try {
       return this.elementAt(index);

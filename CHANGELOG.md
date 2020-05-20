@@ -1,6 +1,7 @@
 ## Next release
 
 * Fixed repository url.
+* Method `tryElementAt()` - returns the element at the index if exists or `orElse` if it is out of range.
 
 ## [0.1.6] - 2020-05-11
 
