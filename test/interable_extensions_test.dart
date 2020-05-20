@@ -103,6 +103,27 @@ void main() {
       expect(list.isUnorderedEquivalent(other), false);
     });
 
+    group('tryElementAt', () {
+      test('returns the element if exists', () {
+        final list = [1, 2, 3];
+
+        expect(list.tryElementAt(1), 2);
+      });
+
+      test('returns null if index is out of range', () {
+        final list = [1, 2, 3];
+
+        expect(list.tryElementAt(4), null);
+      });
+
+      test('returns fallback value if provided when index is out of range', () {
+        final list = [1, 2, 3];
+
+        expect(list.tryElementAt(4, orElse: 4), 4);
+      });
+    });
+
+
     group('math', () {
       // Sum
       test('sum of int elements property', () {
