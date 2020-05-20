@@ -1,6 +1,6 @@
 name: list_ext
 description: Dart extension methods for Iterable and List. You can easily sum, count elements and many more.
-version: 0.1.6
+version: 0.1.7
 homepage: https://github.com/innim/
 repository: https://github.com/Innim/dart_list_extensions
 issue_tracker: https://github.com/Innim/dart_list_extensions/issues
