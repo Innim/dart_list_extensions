@@ -1,5 +1,8 @@
 ## Next release
 
+* Method `maxOf()` - returns the max value of int or double values by elements.
+* Method `max()` for iterables of int and double.
+
 ## [0.1.7] - 2020-05-20
 
 * Fixed repository url.

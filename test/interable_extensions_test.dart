@@ -181,6 +181,60 @@ void main() {
 
         expect(list.avgOfDouble((e) => e.doubleVal), 0);
       });
+
+      test('max of int', () {
+        final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
+
+        expect(list.maxOf((e) => e.intVal), 10);
+      });
+
+      test('max of int for empty', () {
+        final list = <_E>[];
+
+        expect(list.maxOf((e) => e.intVal), 0);
+      });
+
+      test('max of double', () {
+        final list = [
+          _E(doubleVal: 1.5),
+          _E(doubleVal: 3.2),
+          _E(doubleVal: 3.3)
+        ];
+
+        expect(list.maxOf((e) => e.doubleVal), 3.3);
+      });
+
+      test('max of double for empty', () {
+        final list = <_E>[];
+
+        expect(list.maxOf((e) => e.doubleVal), 0.0);
+      });
+    });
+  });
+
+  group('Iterable of num', () {
+    test('max of int', () {
+      final list = [10, 20, 4, 0];
+
+      expect(list.max(), 20);
+    });
+
+    test('max of int for empty', () {
+      final list = <int>[];
+
+      expect(list.max(), 0);
+    });
+
+    test('max of double', () {
+      final list = [-1.2, -10.0, -4.3];
+
+      expect(list.max(), -1.2);
+    });
+
+    test('max of double for empty', () {
+      final list = <double>[];
+
+      expect(list.max(), 0.0);
     });
   });
 

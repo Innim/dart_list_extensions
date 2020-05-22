@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:quiver/iterables.dart';
+import 'dart:math' as math;
 
 final _unorderedEquality = UnorderedIterableEquality();
 final _getNull = () => null;
@@ -111,6 +112,22 @@ extension IterableExtensions<E> on Iterable<E> {
     final count = length;
     return count > 0 ? sumOfDouble(getVal) / count : 0;
   }
+
+  /// Returns the max value of int or double values by elements.
+  ///
+  /// [getVal] should return value for compare.
+  /// It can be property of element, or any another value by element.
+  ///
+  /// If no elements, return zero.
+  T maxOf<T extends num>(T getVal(E element)) {
+    return fold(_zero(), (res, e) => math.max(res, getVal(e)));
+  }
+}
+
+/// Extension methods for [Iterable] of num.
+extension NumIterableExtensions<E extends num> on Iterable<E> {
+  /// Returns max value of values.
+  E max() => isEmpty ? _zero() : reduce(math.max);
 }
 
 /// Extension methods for [Iterable] of int.
@@ -134,3 +151,8 @@ extension DoubleIterableExtensions on Iterable<double> {
   /// See [IterableExtensions.avgOfDouble].
   double avg() => this.isNotEmpty ? sum() / length : 0;
 }
+
+/// Returns zero value for num, depends on required type.abs()
+///
+/// It will be `0` for [int] and `0.0` for [double].
+T _zero<T extends num>() => T == int ? 0 : 0.0;
