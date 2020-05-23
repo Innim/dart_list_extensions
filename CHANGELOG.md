@@ -1,5 +1,7 @@
 ## Next release
 
+## [0.1.8] - 2020-05-23
+
 * Method `maxOf()` - returns the max value of int or double values by elements.
 * Method `max()` for iterables of int and double.
 * Method `minOf()` - returns the min value of int or double values by elements.
