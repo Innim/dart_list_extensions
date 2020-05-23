@@ -144,12 +144,25 @@ extension IterableExtensions<E> on Iterable<E> {
   T maxOf<T extends num>(T getVal(E element)) {
     return isEmpty ? _zero() : reduceValue(math.max, getVal);
   }
+
+  /// Returns the min value of int or double values by elements.
+  ///
+  /// [getVal] should return value for compare.
+  /// It can be property of element, or any another value by element.
+  ///
+  /// If no elements, return zero.
+  T minOf<T extends num>(T getVal(E element)) {
+    return isEmpty ? _zero() : reduceValue(math.min, getVal);
+  }
 }
 
 /// Extension methods for [Iterable] of num.
 extension NumIterableExtensions<E extends num> on Iterable<E> {
   /// Returns max value of values.
   E max() => isEmpty ? _zero() : reduce(math.max);
+
+  /// Returns min value of values.
+  E min() => isEmpty ? _zero() : reduce(math.min);
 }
 
 /// Extension methods for [Iterable] of int.

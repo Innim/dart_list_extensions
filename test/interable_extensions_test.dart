@@ -256,6 +256,35 @@ void main() {
 
         expect(list.maxOf((e) => e.doubleVal), 0.0);
       });
+
+      // Min
+      test('min of int', () {
+        final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
+
+        expect(list.minOf((e) => e.intVal), -3);
+      });
+
+      test('min of int for empty', () {
+        final list = <_E>[];
+
+        expect(list.minOf((e) => e.intVal), 0);
+      });
+
+      test('min of double', () {
+        final list = [
+          _E(doubleVal: 1.5),
+          _E(doubleVal: 3.2),
+          _E(doubleVal: 3.3)
+        ];
+
+        expect(list.minOf((e) => e.doubleVal), 1.5);
+      });
+
+      test('min of double for empty', () {
+        final list = <_E>[];
+
+        expect(list.minOf((e) => e.doubleVal), 0.0);
+      });
     });
   });
 
@@ -282,6 +311,36 @@ void main() {
       final list = <double>[];
 
       expect(list.max(), 0.0);
+    });
+
+    test('min of int', () {
+      final list = [10, 20, 4];
+
+      expect(list.min(), 4);
+    });
+
+    test('min of int with zero', () {
+      final list = [10, 20, 0, 4];
+
+      expect(list.min(), 0);
+    });
+
+    test('min of int for empty', () {
+      final list = <int>[];
+
+      expect(list.min(), 0);
+    });
+
+    test('min of double', () {
+      final list = [-1.2, -10.0, -4.3];
+
+      expect(list.min(), -10.0);
+    });
+
+    test('min of double for empty', () {
+      final list = <double>[];
+
+      expect(list.min(), 0.0);
     });
   });
 

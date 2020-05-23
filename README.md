@@ -52,16 +52,17 @@ by iteratively combining its using the provided function.
 #### Map
 * `toMap()` - creates a Map instance from the iterable.
 
-
 ### Math
 
 * `maxOf()` - return max of values by elements.
+* `minOf()` - return min of values by elements.
 * `sumOf()`/`sumOfDouble()` - returns sum of values by elements.
 * `avgOf()`/`avgOfDouble()` - returns the average value of values by elements.
 
 There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `max()`.
+* `min()`.
 * `sum()`.
 * `avg()`.
 
