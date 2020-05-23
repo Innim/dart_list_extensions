@@ -4,351 +4,402 @@ import 'package:tuple/tuple.dart';
 
 void main() {
   group('Iterable', () {
-    test('count of elements with property value', () {
-      final list = [
-        _E(strVal: 'OK'),
-        _E(strVal: 'not OK'),
-        _E(),
-        _E(strVal: 'OK'),
-        _E(boolVal: true)
-      ];
+    group('Common', () {
+      group('Common', () {
+        group('countWhere()', () {
+          test('count of elements with property value', () {
+            final list = [
+              _E(strVal: 'OK'),
+              _E(strVal: 'not OK'),
+              _E(),
+              _E(strVal: 'OK'),
+              _E(boolVal: true)
+            ];
 
-      expect(list.countWhere((e) => e.strVal == 'OK'), 2);
-    });
-
-    test('isNullOrEmpty/isNotNullOrEmpty for null iterable', () {
-      Iterable list;
-
-      expect(list.isNullOrEmpty, true);
-      expect(list.isNotNullOrEmpty, false);
-    });
-
-    test('isNullOrEmpty/isNotNullOrEmpty for empty iterable', () {
-      Iterable list = [];
-
-      expect(list.isNullOrEmpty, true);
-      expect(list.isNotNullOrEmpty, false);
-    });
-
-    test('isNullOrEmpty/isNotNullOrEmpty for not empty iterable', () {
-      final list = [1];
-
-      expect(list.isNullOrEmpty, false);
-      expect(list.isNotNullOrEmpty, true);
-    });
-
-    test('join of object field', () {
-      final list = [_E(strVal: 'first'), _E(strVal: 'second')];
-
-      expect(list.joinOf((e) => e.strVal, ', '), 'first, second');
-    });
-
-    test('split into chunks', () {
-      final list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-      expect(list.chunks(3), [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [10]
-      ]);
-    });
-
-    test('get map from iterable', () {
-      final list = [1, 2, 3];
-
-      expect(
-          list.toMap(
-            (e) => 'K${e}',
-            (e) => 'V${e}',
-          ),
-          {
-            'K1': 'V1',
-            'K2': 'V2',
-            'K3': 'V3',
+            expect(list.countWhere((e) => e.strVal == 'OK'), 2);
           });
-    });
-
-    test('firstWhereOrNull should return first if exist', () {
-      final needle = _E(intVal: 1, strVal: 'first');
-      final list = [needle, _E(intVal: 2), _E(intVal: 1, strVal: 'second')];
-
-      expect(list.firstWhereOrNull((e) => e.intVal == 1), needle);
-    });
-
-    test('firstWhereOrNull should return null if not exist', () {
-      final list = [_E(intVal: 2), _E(intVal: 3)];
-
-      expect(list.firstWhereOrNull((e) => e.intVal == 1), null);
-    });
-
-    test('unordered equivalent true if has same elements', () {
-      final list = [1, 2, 3];
-      final other = [2, 1, 3];
-
-      expect(list.isUnorderedEquivalent(other), true);
-    });
-
-    test('unordered equivalent false if has different elements', () {
-      final list = [1, 2, 3];
-      final other = [1, 2, 4];
-
-      expect(list.isUnorderedEquivalent(other), false);
-    });
-
-    test('unordered equivalent false if has different length', () {
-      final list = [1, 2, 3];
-      final other = [1, 2];
-
-      expect(list.isUnorderedEquivalent(other), false);
-    });
-
-    group('tryElementAt', () {
-      test('returns the element if exists', () {
-        final list = [1, 2, 3];
-
-        expect(list.tryElementAt(1), 2);
-      });
-
-      for (final index in [4, -1]) {
-        test('returns null if index is out of range [$index]', () {
-          final list = [1, 2, 3];
-
-          expect(list.tryElementAt(index), null);
         });
-      }
+      });
 
-      test('returns fallback value if provided when index is out of range', () {
-        final list = [1, 2, 3];
+      group('Equality', () {
+        group('isNullOrEmpty/isNotNullOrEmpty', () {
+          test('null iterable', () {
+            Iterable list;
 
-        expect(list.tryElementAt(4, orElse: 4), 4);
+            expect(list.isNullOrEmpty, true);
+            expect(list.isNotNullOrEmpty, false);
+          });
+
+          test('empty iterable', () {
+            Iterable list = [];
+
+            expect(list.isNullOrEmpty, true);
+            expect(list.isNotNullOrEmpty, false);
+          });
+
+          test('not empty iterable', () {
+            final list = [1];
+
+            expect(list.isNullOrEmpty, false);
+            expect(list.isNotNullOrEmpty, true);
+          });
+        });
+
+        group('isUnorderedEquivalent()', () {
+          test('unordered equivalent true if has same elements', () {
+            final list = [1, 2, 3];
+            final other = [2, 1, 3];
+
+            expect(list.isUnorderedEquivalent(other), true);
+          });
+
+          test('unordered equivalent false if has different elements', () {
+            final list = [1, 2, 3];
+            final other = [1, 2, 4];
+
+            expect(list.isUnorderedEquivalent(other), false);
+          });
+
+          test('unordered equivalent false if has different length', () {
+            final list = [1, 2, 3];
+            final other = [1, 2];
+
+            expect(list.isUnorderedEquivalent(other), false);
+          });
+        });
+      });
+
+      group('Search', () {
+        group('firstWhereOrNull()', () {
+          test('should return first if exist', () {
+            final needle = _E(intVal: 1, strVal: 'first');
+            final list = [
+              needle,
+              _E(intVal: 2),
+              _E(intVal: 1, strVal: 'second')
+            ];
+
+            expect(list.firstWhereOrNull((e) => e.intVal == 1), needle);
+          });
+
+          test('should return null if not exist', () {
+            final list = [_E(intVal: 2), _E(intVal: 3)];
+
+            expect(list.firstWhereOrNull((e) => e.intVal == 1), null);
+          });
+        });
+      });
+
+      group('Safe elements access', () {
+        group('tryElementAt()', () {
+          test('returns the element if exists', () {
+            final list = [1, 2, 3];
+
+            expect(list.tryElementAt(1), 2);
+          });
+
+          for (final index in [4, -1]) {
+            test('returns null if index is out of range [$index]', () {
+              final list = [1, 2, 3];
+
+              expect(list.tryElementAt(index), null);
+            });
+          }
+
+          test('returns fallback value if provided when index is out of range',
+              () {
+            final list = [1, 2, 3];
+
+            expect(list.tryElementAt(4, orElse: 4), 4);
+          });
+        });
       });
     });
 
-    group('transformation', () {
-      group('reduceValue()', () {
-        test('should throw error if empty', () {
+    group('Transformation', () {
+      group('Common', () {
+        group('reduceValue()', () {
+          test('should throw error if empty', () {
+            final list = <_E>[];
+
+            expect(
+              () => list.reduceValue(
+                (val, elVal) => val + elVal,
+                (e) => e.strVal,
+              ),
+              throwsA(TypeMatcher<StateError>()),
+            );
+          });
+
+          test('should return first element value if has only one element', () {
+            final list = [_E(strVal: "first")];
+
+            expect(
+              list.reduceValue(
+                (val, elVal) => val + elVal,
+                (e) => e.strVal,
+              ),
+              "first",
+            );
+          });
+
+          test('should return combined value', () {
+            final list = [_E(intVal: 1), _E(intVal: 3), _E(intVal: -2)];
+
+            expect(
+              list.reduceValue(
+                (val, elVal) => val + elVal,
+                (e) => e.intVal,
+              ),
+              2,
+            );
+          });
+        });
+      });
+
+      group('Iterables', () {
+        group('chunks()', () {
+          test('should split into chunks', () {
+            final list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+            expect(list.chunks(3), [
+              [1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9],
+              [10]
+            ]);
+          });
+        });
+      });
+
+      group('String', () {
+        group('joinOf()', () {
+          test('should return join of object field', () {
+            final list = [_E(strVal: 'first'), _E(strVal: 'second')];
+
+            expect(list.joinOf((e) => e.strVal, ', '), 'first, second');
+          });
+        });
+      });
+
+      group('Map', () {
+        group('toMap()', () {
+          test('should return map', () {
+            final list = [1, 2, 3];
+
+            expect(
+                list.toMap(
+                  (e) => 'K${e}',
+                  (e) => 'V${e}',
+                ),
+                {
+                  'K1': 'V1',
+                  'K2': 'V2',
+                  'K3': 'V3',
+                });
+          });
+        });
+      });
+    });
+
+    group('Math', () {
+      group('sumOf()', () {
+        test('sum of int elements property', () {
+          final list = [_E(intVal: 1), _E(intVal: 3)];
+
+          expect(list.sumOf((e) => e.intVal), 4);
+        });
+      });
+
+      group('sumOfDouble()', () {
+        test('sum of double elements property', () {
+          final list = [_E(doubleVal: 1.5), _E(doubleVal: 3.1)];
+
+          expect(list.sumOfDouble((e) => e.doubleVal), 4.6);
+        });
+      });
+
+      group('avgOf()', () {
+        test('ceil avg of int elements property', () {
+          final list = [_E(intVal: 1), _E(intVal: 3)];
+
+          expect(list.avgOf((e) => e.intVal), 2);
+        });
+
+        test('float avg of int elements property', () {
+          final list = [_E(intVal: 1), _E(intVal: 4)];
+
+          expect(list.avgOf((e) => e.intVal), 2.5);
+        });
+
+        test('avg of int with negative', () {
+          final list = [_E(intVal: 1), _E(intVal: -3)];
+
+          expect(list.avgOf((e) => e.intVal), -1);
+        });
+
+        test('avg of empty', () {
+          final list = [];
+
+          expect(list.avgOf((e) => e.intVal), 0);
+        });
+      });
+
+      group('avgOfDouble()', () {
+        test('avg of double elements property', () {
+          final list = [_E(doubleVal: 1.5), _E(doubleVal: 3.2)];
+
+          expect(list.avgOfDouble((e) => e.doubleVal), 2.35);
+        });
+
+        test('avg of double with negative', () {
+          final list = [_E(doubleVal: 2.1), _E(doubleVal: -1.1)];
+
+          expect(list.avgOfDouble((e) => e.doubleVal), .5);
+        });
+
+        test('avg of double empty', () {
+          final list = [];
+
+          expect(list.avgOfDouble((e) => e.doubleVal), 0);
+        });
+      });
+
+      group('maxOf()', () {
+        test('max of int', () {
+          final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
+
+          expect(list.maxOf((e) => e.intVal), 10);
+        });
+
+        test('max of negative int', () {
+          final list = [_E(intVal: -1), _E(intVal: -3), _E(intVal: -10)];
+
+          expect(list.maxOf((e) => e.intVal), -1);
+        });
+
+        test('max of int for empty', () {
           final list = <_E>[];
 
-          expect(
-            () => list.reduceValue(
-              (val, elVal) => val + elVal,
-              (e) => e.strVal,
-            ),
-            throwsA(TypeMatcher<StateError>()),
-          );
+          expect(list.maxOf((e) => e.intVal), 0);
         });
 
-        test('should return first element value if has only one element', () {
-          final list = [_E(strVal: "first")];
+        test('max of double', () {
+          final list = [
+            _E(doubleVal: 1.5),
+            _E(doubleVal: 3.2),
+            _E(doubleVal: 3.3)
+          ];
 
-          expect(
-            list.reduceValue(
-              (val, elVal) => val + elVal,
-              (e) => e.strVal,
-            ),
-            "first",
-          );
+          expect(list.maxOf((e) => e.doubleVal), 3.3);
         });
 
-        test('should return combined value', () {
-          final list = [_E(intVal: 1), _E(intVal: 3), _E(intVal: -2)];
+        test('max of double for empty', () {
+          final list = <_E>[];
 
-          expect(
-            list.reduceValue(
-              (val, elVal) => val + elVal,
-              (e) => e.intVal,
-            ),
-            2,
-          );
+          expect(list.maxOf((e) => e.doubleVal), 0.0);
         });
       });
-    });
 
-    group('math', () {
-      // Sum
-      test('sum of int elements property', () {
-        final list = [_E(intVal: 1), _E(intVal: 3)];
+      group('minOf()', () {
+        test('min of int', () {
+          final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
 
-        expect(list.sumOf((e) => e.intVal), 4);
-      });
+          expect(list.minOf((e) => e.intVal), -3);
+        });
 
-      test('sum of double elements property', () {
-        final list = [_E(doubleVal: 1.5), _E(doubleVal: 3.1)];
+        test('min of int for empty', () {
+          final list = <_E>[];
 
-        expect(list.sumOfDouble((e) => e.doubleVal), 4.6);
-      });
+          expect(list.minOf((e) => e.intVal), 0);
+        });
 
-      // Average
-      test('ceil avg of int elements property', () {
-        final list = [_E(intVal: 1), _E(intVal: 3)];
+        test('min of double', () {
+          final list = [
+            _E(doubleVal: 1.5),
+            _E(doubleVal: 3.2),
+            _E(doubleVal: 3.3)
+          ];
 
-        expect(list.avgOf((e) => e.intVal), 2);
-      });
+          expect(list.minOf((e) => e.doubleVal), 1.5);
+        });
 
-      test('float avg of int elements property', () {
-        final list = [_E(intVal: 1), _E(intVal: 4)];
+        test('min of double for empty', () {
+          final list = <_E>[];
 
-        expect(list.avgOf((e) => e.intVal), 2.5);
-      });
-
-      test('avg of int with negative', () {
-        final list = [_E(intVal: 1), _E(intVal: -3)];
-
-        expect(list.avgOf((e) => e.intVal), -1);
-      });
-
-      test('avg of empty', () {
-        final list = [];
-
-        expect(list.avgOf((e) => e.intVal), 0);
-      });
-
-      test('avg of double elements property', () {
-        final list = [_E(doubleVal: 1.5), _E(doubleVal: 3.2)];
-
-        expect(list.avgOfDouble((e) => e.doubleVal), 2.35);
-      });
-
-      test('avg of double with negative', () {
-        final list = [_E(doubleVal: 2.1), _E(doubleVal: -1.1)];
-
-        expect(list.avgOfDouble((e) => e.doubleVal), .5);
-      });
-
-      test('avg of double empty', () {
-        final list = [];
-
-        expect(list.avgOfDouble((e) => e.doubleVal), 0);
-      });
-
-      // Max
-      test('max of int', () {
-        final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
-
-        expect(list.maxOf((e) => e.intVal), 10);
-      });
-
-      test('max of negative int', () {
-        final list = [_E(intVal: -1), _E(intVal: -3), _E(intVal: -10)];
-
-        expect(list.maxOf((e) => e.intVal), -1);
-      });
-
-      test('max of int for empty', () {
-        final list = <_E>[];
-
-        expect(list.maxOf((e) => e.intVal), 0);
-      });
-
-      test('max of double', () {
-        final list = [
-          _E(doubleVal: 1.5),
-          _E(doubleVal: 3.2),
-          _E(doubleVal: 3.3)
-        ];
-
-        expect(list.maxOf((e) => e.doubleVal), 3.3);
-      });
-
-      test('max of double for empty', () {
-        final list = <_E>[];
-
-        expect(list.maxOf((e) => e.doubleVal), 0.0);
-      });
-
-      // Min
-      test('min of int', () {
-        final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
-
-        expect(list.minOf((e) => e.intVal), -3);
-      });
-
-      test('min of int for empty', () {
-        final list = <_E>[];
-
-        expect(list.minOf((e) => e.intVal), 0);
-      });
-
-      test('min of double', () {
-        final list = [
-          _E(doubleVal: 1.5),
-          _E(doubleVal: 3.2),
-          _E(doubleVal: 3.3)
-        ];
-
-        expect(list.minOf((e) => e.doubleVal), 1.5);
-      });
-
-      test('min of double for empty', () {
-        final list = <_E>[];
-
-        expect(list.minOf((e) => e.doubleVal), 0.0);
+          expect(list.minOf((e) => e.doubleVal), 0.0);
+        });
       });
     });
   });
 
   group('Iterable of num', () {
-    test('max of int', () {
-      final list = [10, 20, 4, 0];
+    group('max()', () {
+      test('max of int', () {
+        final list = [10, 20, 4, 0];
 
-      expect(list.max(), 20);
+        expect(list.max(), 20);
+      });
+
+      test('max of int for empty', () {
+        final list = <int>[];
+
+        expect(list.max(), 0);
+      });
+
+      test('max of double', () {
+        final list = [-1.2, -10.0, -4.3];
+
+        expect(list.max(), -1.2);
+      });
+
+      test('max of double for empty', () {
+        final list = <double>[];
+
+        expect(list.max(), 0.0);
+      });
     });
 
-    test('max of int for empty', () {
-      final list = <int>[];
+    group('min()', () {
+      test('min of int', () {
+        final list = [10, 20, 4];
 
-      expect(list.max(), 0);
-    });
+        expect(list.min(), 4);
+      });
 
-    test('max of double', () {
-      final list = [-1.2, -10.0, -4.3];
+      test('min of int with zero', () {
+        final list = [10, 20, 0, 4];
 
-      expect(list.max(), -1.2);
-    });
+        expect(list.min(), 0);
+      });
 
-    test('max of double for empty', () {
-      final list = <double>[];
+      test('min of int for empty', () {
+        final list = <int>[];
 
-      expect(list.max(), 0.0);
-    });
+        expect(list.min(), 0);
+      });
 
-    test('min of int', () {
-      final list = [10, 20, 4];
+      test('min of double', () {
+        final list = [-1.2, -10.0, -4.3];
 
-      expect(list.min(), 4);
-    });
+        expect(list.min(), -10.0);
+      });
 
-    test('min of int with zero', () {
-      final list = [10, 20, 0, 4];
+      test('min of double for empty', () {
+        final list = <double>[];
 
-      expect(list.min(), 0);
-    });
-
-    test('min of int for empty', () {
-      final list = <int>[];
-
-      expect(list.min(), 0);
-    });
-
-    test('min of double', () {
-      final list = [-1.2, -10.0, -4.3];
-
-      expect(list.min(), -10.0);
-    });
-
-    test('min of double for empty', () {
-      final list = <double>[];
-
-      expect(list.min(), 0.0);
+        expect(list.min(), 0.0);
+      });
     });
   });
 
   group('Iterable of int', () {
-    test('sum elements', () {
-      final list = [1, 2, 5];
+    group('sum()', () {
+      test('sum elements', () {
+        final list = [1, 2, 5];
 
-      expect(list.sum(), 8);
+        expect(list.sum(), 8);
+      });
     });
 
     group('avg()', () {
@@ -370,10 +421,12 @@ void main() {
   });
 
   group('Iterable of double', () {
-    test('sum elements', () {
-      final list = [1.5, 2.3, 5.7];
+    group('sum()', () {
+      test('sum elements', () {
+        final list = [1.5, 2.3, 5.7];
 
-      expect(list.sum(), 9.5);
+        expect(list.sum(), 9.5);
+      });
     });
 
     group('avg()', () {
