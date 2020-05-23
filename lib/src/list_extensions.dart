@@ -1,5 +1,9 @@
 /// Extension methods for any [List].
 extension ListExtensions<E> on List<E> {
+  // Transformation
+
+  // Transformation - List
+
   /// Copy current list with adding [element] at the end of new list.
   ///
   /// If current list is `null` - new list with [element] will be created.

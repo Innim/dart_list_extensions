@@ -9,6 +9,12 @@ final _getNull = () => null;
 extension IterableExtensions<E> on Iterable<E> {
   // Common
 
+  /// Returns count of elements that satisfy the predicate [test].
+  int countWhere(bool test(E element)) =>
+      this.fold(0, (count, e) => test(e) ? count + 1 : count);
+
+  // Common - Equality
+
   /// Returns the element at the [index] if exists
   /// or [orElse] if it is out of range.
   E tryElementAt(int index, {E orElse}) {
@@ -29,9 +35,25 @@ extension IterableExtensions<E> on Iterable<E> {
     return this != null && this.isNotEmpty;
   }
 
-  /// Returns count of elements that satisfy the predicate [test].
-  int countWhere(bool test(E element)) =>
-      this.fold(0, (count, e) => test(e) ? count + 1 : count);
+  // Common - Search
+
+  /// Return the first element that satisfies the given predicate [test]
+  /// or `null` if no element satisfies.
+  ///
+  /// See [Iterable.firstWhere].
+  E firstWhereOrNull(bool test(E element)) =>
+      this.firstWhere(test, orElse: _getNull);
+
+  // Common - Safe elements access
+
+  /// Check equality of the elements of this and [other] iterables
+  /// without considering order.
+  ///
+  /// Return `true` if two iterable have the same number of elements,
+  /// and the elements of this iterable can be paired with the elements of
+  /// the other iterable, so that each pair are equal.
+  bool isUnorderedEquivalent(Iterable<E> other) =>
+      _unorderedEquality.equals(this, other);
 
   // Transformation
 
@@ -55,12 +77,7 @@ extension IterableExtensions<E> on Iterable<E> {
     return value;
   }
 
-  /// Get string value for each element and concatenates it with [separator].
-  ///
-  /// [getVal] used to get string value for element. It can be value of some
-  /// field, or custom stringify function.
-  String joinOf(String getVal(E element), [String separator = ""]) => this.fold(
-      '', (res, e) => res != '' ? res + separator + getVal(e) : getVal(e));
+  // Transformation - Iterables
 
   /// Splits into chunks of the specified size.
   ///
@@ -74,6 +91,17 @@ extension IterableExtensions<E> on Iterable<E> {
   /// ```
   Iterable<List<E>> chunks(int size) => partition(this, size);
 
+  // Transformation - String
+
+  /// Get string value for each element and concatenates it with [separator].
+  ///
+  /// [getVal] used to get string value for element. It can be value of some
+  /// field, or custom stringify function.
+  String joinOf(String getVal(E element), [String separator = ""]) => this.fold(
+      '', (res, e) => res != '' ? res + separator + getVal(e) : getVal(e));
+
+  // Transformation - Map
+
   /// Creates a Map instance from the iterable.
   ///
   /// [getKey] used to get key for result Map.
@@ -81,22 +109,6 @@ extension IterableExtensions<E> on Iterable<E> {
   Map<TKey, TVal> toMap<TKey, TVal>(
           TKey getKey(element), TVal getVal(element)) =>
       Map.fromIterable(this, key: getKey, value: getVal);
-
-  /// Return the first element that satisfies the given predicate [test]
-  /// or `null` if no element satisfies.
-  ///
-  /// See [Iterable.firstWhere].
-  E firstWhereOrNull(bool test(E element)) =>
-      this.firstWhere(test, orElse: _getNull);
-
-  /// Check equality of the elements of this and [other] iterables
-  /// without considering order.
-  ///
-  /// Return `true` if two iterable have the same number of elements,
-  /// and the elements of this iterable can be paired with the elements of
-  /// the other iterable, so that each pair are equal.
-  bool isUnorderedEquivalent(Iterable<E> other) =>
-      _unorderedEquality.equals(this, other);
 
   // Math
 
@@ -158,6 +170,8 @@ extension IterableExtensions<E> on Iterable<E> {
 
 /// Extension methods for [Iterable] of num.
 extension NumIterableExtensions<E extends num> on Iterable<E> {
+  // Math
+
   /// Returns max value of values.
   E max() => isEmpty ? _zero() : reduce(math.max);
 
@@ -167,6 +181,8 @@ extension NumIterableExtensions<E extends num> on Iterable<E> {
 
 /// Extension methods for [Iterable] of int.
 extension IntIterableExtensions on Iterable<int> {
+  // Math
+
   /// Returns sum of values.
   int sum() => this.fold(0, (sum, v) => sum + v);
 
@@ -178,6 +194,8 @@ extension IntIterableExtensions on Iterable<int> {
 
 /// Extension methods for [Iterable] of double.
 extension DoubleIterableExtensions on Iterable<double> {
+  // Math
+
   /// Returns sum of values.
   double sum() => this.fold(0, (sum, v) => sum + v);
 

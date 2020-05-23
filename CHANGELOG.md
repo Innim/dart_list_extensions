@@ -1,5 +1,7 @@
 ## Next release
 
+* Refactor methods arrangements.
+
 ## [0.1.8] - 2020-05-23
 
 * Method `maxOf()` - returns the max value of int or double values by elements.
