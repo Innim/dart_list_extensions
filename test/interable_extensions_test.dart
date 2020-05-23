@@ -222,10 +222,17 @@ void main() {
         expect(list.avgOfDouble((e) => e.doubleVal), 0);
       });
 
+      // Max
       test('max of int', () {
         final list = [_E(intVal: 1), _E(intVal: -3), _E(intVal: 10)];
 
         expect(list.maxOf((e) => e.intVal), 10);
+      });
+
+      test('max of negative int', () {
+        final list = [_E(intVal: -1), _E(intVal: -3), _E(intVal: -10)];
+
+        expect(list.maxOf((e) => e.intVal), -1);
       });
 
       test('max of int for empty', () {

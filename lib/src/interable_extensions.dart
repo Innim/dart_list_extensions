@@ -142,7 +142,7 @@ extension IterableExtensions<E> on Iterable<E> {
   ///
   /// If no elements, return zero.
   T maxOf<T extends num>(T getVal(E element)) {
-    return fold(_zero(), (res, e) => math.max(res, getVal(e)));
+    return isEmpty ? _zero() : reduceValue(math.max, getVal);
   }
 }
 
