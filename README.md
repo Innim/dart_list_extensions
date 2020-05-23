@@ -40,6 +40,9 @@ void main() {
 
 ### Transformation
 
+* `reduceValue()` - reduces values of elements in a collection to a single value
+by iteratively combining its using the provided function.
+
 #### Iterables
 * `chunks()` - splits into chunks of the specified size.
 

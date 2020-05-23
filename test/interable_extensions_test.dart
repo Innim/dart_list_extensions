@@ -125,6 +125,46 @@ void main() {
       });
     });
 
+    group('transformation', () {
+      group('reduceValue()', () {
+        test('should throw error if empty', () {
+          final list = <_E>[];
+
+          expect(
+            () => list.reduceValue(
+              (val, elVal) => val + elVal,
+              (e) => e.strVal,
+            ),
+            throwsA(TypeMatcher<StateError>()),
+          );
+        });
+
+        test('should return first element value if has only one element', () {
+          final list = [_E(strVal: "first")];
+
+          expect(
+            list.reduceValue(
+              (val, elVal) => val + elVal,
+              (e) => e.strVal,
+            ),
+            "first",
+          );
+        });
+
+        test('should return combined value', () {
+          final list = [_E(intVal: 1), _E(intVal: 3), _E(intVal: -2)];
+
+          expect(
+            list.reduceValue(
+              (val, elVal) => val + elVal,
+              (e) => e.intVal,
+            ),
+            2,
+          );
+        });
+      });
+    });
+
     group('math', () {
       // Sum
       test('sum of int elements property', () {

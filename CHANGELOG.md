@@ -2,6 +2,8 @@
 
 * Method `maxOf()` - returns the max value of int or double values by elements.
 * Method `max()` for iterables of int and double.
+* Method `reduceValue()` - reduces values of elements in a collection to a single value
+by iteratively combining its using the provided function.
 
 ## [0.1.7] - 2020-05-20
 

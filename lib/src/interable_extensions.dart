@@ -33,6 +33,28 @@ extension IterableExtensions<E> on Iterable<E> {
   int countWhere(bool test(E element)) =>
       this.fold(0, (count, e) => test(e) ? count + 1 : count);
 
+  // Transformation
+
+  /// Reduces values of elements in a collection
+  /// to a single value by iteratively combining its
+  /// using the provided function.
+  ///
+  /// The iterable must have at least one element.
+  /// If it has only one element, that element is returned.
+  T reduceValue<T>(T combine(T value, T elementVal), T getVal(E element)) {
+    Iterator<E> iterator = this.iterator;
+    if (!iterator.moveNext()) {
+      throw StateError("No element");
+    }
+
+    T value = getVal(iterator.current);
+    while (iterator.moveNext()) {
+      value = combine(value, getVal(iterator.current));
+    }
+
+    return value;
+  }
+
   /// Get string value for each element and concatenates it with [separator].
   ///
   /// [getVal] used to get string value for element. It can be value of some
