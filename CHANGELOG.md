@@ -1,5 +1,7 @@
 ## Next release
 
+## [0.1.9] - 2020-06-01
+
 * Refactor methods arrangements.
 * Refactor tests in groups.
 * Getter `firstOrNull` -  returns the first element or `null` if collection is empty.
