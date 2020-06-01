@@ -1,5 +1,9 @@
 ## Next release
 
+## [0.1.9+1] - 2020-06-01
+
+* Readme updated.
+
 ## [0.1.9] - 2020-06-01
 
 * Refactor methods arrangements.

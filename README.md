@@ -19,6 +19,7 @@ void main() {
   final list = [1, 2, 5];
   final sum = list.sum();
   print('Sum: $sum');
+  // Output: Sum: 8
 }
 ```
 
@@ -36,6 +37,7 @@ void main() {
 * `firstWhereOrNull()` - return the first found element or `null` if no element found.
 
 #### Safe elements access
+* `firstOrNull` -  returns the first element or `null` if collection is empty.
 * `tryElementAt()` - returns the element at the index if exists or `orElse` if it is out of range.
 
 ### Transformation
