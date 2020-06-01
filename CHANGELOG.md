@@ -2,6 +2,7 @@
 
 * Refactor methods arrangements.
 * Refactor tests in groups.
+* Getter `firstOrNull` -  returns the first element or `null` if collection is empty.
 
 ## [0.1.8] - 2020-05-23
 

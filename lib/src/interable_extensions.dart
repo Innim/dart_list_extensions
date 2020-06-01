@@ -45,6 +45,9 @@ extension IterableExtensions<E> on Iterable<E> {
 
   // Common - Safe elements access
 
+  /// Returns the first element or `null` if `this` is empty.
+  E get firstOrNull => isEmpty ? null : first;
+
   /// Returns the element at the [index] if exists
   /// or [orElse] if it is out of range.
   E tryElementAt(int index, {E orElse}) {

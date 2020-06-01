@@ -91,6 +91,21 @@ void main() {
       });
 
       group('Safe elements access', () {
+        group('firstOrNull', () {
+          test('should return first element if not empty', () {
+            final first = _E(intVal: 1);
+            final list = [first, _E(intVal: 0)];
+
+            expect(list.firstOrNull, first);
+          });
+
+          test('should return null if empty', () {
+            final list = [];
+
+            expect(list.firstOrNull, null);
+          });
+        });
+
         group('tryElementAt()', () {
           test('returns the element if exists', () {
             final list = [1, 2, 3];
