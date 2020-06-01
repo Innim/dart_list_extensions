@@ -15,16 +15,6 @@ extension IterableExtensions<E> on Iterable<E> {
 
   // Common - Equality
 
-  /// Returns the element at the [index] if exists
-  /// or [orElse] if it is out of range.
-  E tryElementAt(int index, {E orElse}) {
-    try {
-      return this.elementAt(index);
-    } catch (e) {
-      return orElse;
-    }
-  }
-
   /// Returns `true` if iterable is `null` or empty.
   bool get isNullOrEmpty {
     return this == null || this.isEmpty;
@@ -34,6 +24,15 @@ extension IterableExtensions<E> on Iterable<E> {
   bool get isNotNullOrEmpty {
     return this != null && this.isNotEmpty;
   }
+
+  /// Check equality of the elements of this and [other] iterables
+  /// without considering order.
+  ///
+  /// Return `true` if two iterable have the same number of elements,
+  /// and the elements of this iterable can be paired with the elements of
+  /// the other iterable, so that each pair are equal.
+  bool isUnorderedEquivalent(Iterable<E> other) =>
+      _unorderedEquality.equals(this, other);
 
   // Common - Search
 
@@ -46,14 +45,15 @@ extension IterableExtensions<E> on Iterable<E> {
 
   // Common - Safe elements access
 
-  /// Check equality of the elements of this and [other] iterables
-  /// without considering order.
-  ///
-  /// Return `true` if two iterable have the same number of elements,
-  /// and the elements of this iterable can be paired with the elements of
-  /// the other iterable, so that each pair are equal.
-  bool isUnorderedEquivalent(Iterable<E> other) =>
-      _unorderedEquality.equals(this, other);
+  /// Returns the element at the [index] if exists
+  /// or [orElse] if it is out of range.
+  E tryElementAt(int index, {E orElse}) {
+    try {
+      return this.elementAt(index);
+    } catch (e) {
+      return orElse;
+    }
+  }
 
   // Transformation
 
