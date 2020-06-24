@@ -22,6 +22,19 @@ extension IterableExtensions<E> on Iterable<E> {
     return false;
   }
 
+  /// Returns `true` if the collection contains all elements from the [elements].
+  ///
+  /// Order of elements does not matter.
+  ///
+  /// See [contains].
+  bool containsAll(Iterable elements) {
+    for (E e in elements) {
+      if (!contains(e)) return false;
+    }
+
+    return true;
+  }
+
   // Common - Equality
 
   /// Returns `true` if iterable is `null` or empty.

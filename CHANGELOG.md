@@ -1,6 +1,7 @@
 ## Next release
 
 * Method `containsWhere()` - returns `true` if the collection contains an element that satisfy the predicate.
+* Method `containsAll()` - returns `true` if the collection contains all elements from the given collection.
 
 ## [0.1.9+1] - 2020-06-01
 

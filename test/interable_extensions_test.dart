@@ -45,6 +45,35 @@ void main() {
             expect(calls, 1);
           });
         });
+
+        group('containsA;;()', () {
+          test('should return true if has all of elements', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.containsAll([1]), true);
+            expect(list.containsAll([1, 3]), true);
+            expect(list.containsAll([1, 2, 3, 4]), true);
+          });
+
+          test('should return true if has all of elements in any order', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.containsAll([1, 3, 2, 4]), true);
+          });
+
+          test('should return false if has none of elements', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.containsAll([-1, 5]), false);
+          });
+
+          test('should return false if has not all of elements', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.containsAll([1, 5]), false);
+            expect(list.containsAll([1, 2, 3, 4, 5]), false);
+          });
+        });
       });
 
       group('Equality', () {
