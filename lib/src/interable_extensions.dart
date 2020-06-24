@@ -13,6 +13,15 @@ extension IterableExtensions<E> on Iterable<E> {
   int countWhere(bool test(E element)) =>
       this.fold(0, (count, e) => test(e) ? count + 1 : count);
 
+  /// Returns `true` if the collection contains an element that satisfy the predicate [test].
+  bool containsWhere(bool test(E element)) {
+    for (E e in this) {
+      if (test(e)) return true;
+    }
+
+    return false;
+  }
+
   // Common - Equality
 
   /// Returns `true` if iterable is `null` or empty.

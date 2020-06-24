@@ -1,5 +1,7 @@
 ## Next release
 
+* Method `containsWhere()` - returns `true` if the collection contains an element that satisfy the predicate.
+
 ## [0.1.9+1] - 2020-06-01
 
 * Readme updated.

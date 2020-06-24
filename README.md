@@ -28,6 +28,7 @@ void main() {
 ### Common
 
 * `countWhere()` - returns count of elements that satisfy the predicate.
+* `containsWhere()` - returns `true` if the collection contains an element that satisfy the predicate.
 
 #### Equality
 * `isNullOrEmpty`/`isNotNullOrEmpty` - check for `null` or empty.

@@ -19,6 +19,32 @@ void main() {
             expect(list.countWhere((e) => e.strVal == 'OK'), 2);
           });
         });
+
+        group('containsWhere()', () {
+          test('should return true if element satisfy', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.containsWhere((e) => e == 3), true);
+          });
+
+          test('should return false if there is not satisfy elements', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.containsWhere((e) => e == 5), false);
+          });
+
+          test('should call test predicate only until first true', () {
+            final list = [1, 2, 3, 4];
+            int calls = 0;
+
+            list.containsWhere((e) {
+              calls++;
+              return true;
+            });
+
+            expect(calls, 1);
+          });
+        });
       });
 
       group('Equality', () {
