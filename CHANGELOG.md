@@ -1,5 +1,7 @@
 ## Next release
 
+## [0.1.11] - 2020-07-16
+
 * Analysis problems fixed.
 * Remove `containsWhere()` - duplicate of `any()`.
 
