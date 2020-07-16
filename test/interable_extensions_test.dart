@@ -35,7 +35,7 @@ void main() {
 
           test('should call test predicate only until first true', () {
             final list = [1, 2, 3, 4];
-            int calls = 0;
+            var calls = 0;
 
             list.containsWhere((e) {
               calls++;
@@ -202,14 +202,14 @@ void main() {
           });
 
           test('should return first element value if has only one element', () {
-            final list = [_E(strVal: "first")];
+            final list = [_E(strVal: 'first')];
 
             expect(
               list.reduceValue(
                 (val, elVal) => val + elVal,
                 (e) => e.strVal,
               ),
-              "first",
+              'first',
             );
           });
 

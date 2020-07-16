@@ -5,17 +5,23 @@ import 'dart:math' as math;
 final _unorderedEquality = UnorderedIterableEquality();
 final _getNull = () => null;
 
+/// Function, that returns `true` if element is pass test.
+typedef TestPredicate<E> = bool Function(E element);
+
+/// Function, that value [T] for tha elemet.
+typedef GetValue<E, T> = T Function(E element);
+
 /// Extension methods for any [Iterable].
 extension IterableExtensions<E> on Iterable<E> {
   // Common
 
   /// Returns count of elements that satisfy the predicate [test].
-  int countWhere(bool test(E element)) =>
-      this.fold(0, (count, e) => test(e) ? count + 1 : count);
+  int countWhere(TestPredicate<E> test) =>
+      fold(0, (count, e) => test(e) ? count + 1 : count);
 
   /// Returns `true` if the collection contains an element that satisfy the predicate [test].
-  bool containsWhere(bool test(E element)) {
-    for (E e in this) {
+  bool containsWhere(TestPredicate<E> test) {
+    for (final e in this) {
       if (test(e)) return true;
     }
 
@@ -39,12 +45,12 @@ extension IterableExtensions<E> on Iterable<E> {
 
   /// Returns `true` if iterable is `null` or empty.
   bool get isNullOrEmpty {
-    return this == null || this.isEmpty;
+    return this == null || isEmpty;
   }
 
   /// Returns `true` if iterable is not `null` and not empty.
   bool get isNotNullOrEmpty {
-    return this != null && this.isNotEmpty;
+    return this != null && isNotEmpty;
   }
 
   /// Check equality of the elements of this and [other] iterables
@@ -62,8 +68,8 @@ extension IterableExtensions<E> on Iterable<E> {
   /// or `null` if no element satisfies.
   ///
   /// See [Iterable.firstWhere].
-  E firstWhereOrNull(bool test(E element)) =>
-      this.firstWhere(test, orElse: _getNull);
+  E firstWhereOrNull(TestPredicate<E> test) =>
+      firstWhere(test, orElse: _getNull);
 
   // Common - Safe elements access
 
@@ -74,7 +80,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// or [orElse] if it is out of range.
   E tryElementAt(int index, {E orElse}) {
     try {
-      return this.elementAt(index);
+      return elementAt(index);
     } catch (e) {
       return orElse;
     }
@@ -88,13 +94,14 @@ extension IterableExtensions<E> on Iterable<E> {
   ///
   /// The iterable must have at least one element.
   /// If it has only one element, that element is returned.
-  T reduceValue<T>(T combine(T value, T elementVal), T getVal(E element)) {
-    Iterator<E> iterator = this.iterator;
+  T reduceValue<T>(
+      T Function(T value, T elementVal) combine, GetValue<E, T> getVal) {
+    final iterator = this.iterator;
     if (!iterator.moveNext()) {
-      throw StateError("No element");
+      throw StateError('No element');
     }
 
-    T value = getVal(iterator.current);
+    var value = getVal(iterator.current);
     while (iterator.moveNext()) {
       value = combine(value, getVal(iterator.current));
     }
@@ -122,8 +129,8 @@ extension IterableExtensions<E> on Iterable<E> {
   ///
   /// [getVal] used to get string value for element. It can be value of some
   /// field, or custom stringify function.
-  String joinOf(String getVal(E element), [String separator = ""]) => this.fold(
-      '', (res, e) => res != '' ? res + separator + getVal(e) : getVal(e));
+  String joinOf(GetValue<E, String> getVal, [String separator = '']) =>
+      fold('', (res, e) => res != '' ? res + separator + getVal(e) : getVal(e));
 
   // Transformation - Map
 
@@ -132,7 +139,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// [getKey] used to get key for result Map.
   /// [getVal] used to get value for result Map.
   Map<TKey, TVal> toMap<TKey, TVal>(
-          TKey getKey(element), TVal getVal(element)) =>
+          GetValue<dynamic, TKey> getKey, GetValue<dynamic, TVal> getVal) =>
       Map.fromIterable(this, key: getKey, value: getVal);
 
   // Math
@@ -141,14 +148,14 @@ extension IterableExtensions<E> on Iterable<E> {
   ///
   /// [getVal] should return value for sum up. It can be property of element,
   /// or any another value by element.
-  int sumOf(int getVal(E element)) => this.fold(0, (sum, e) => sum + getVal(e));
+  int sumOf(GetValue<E, int> getVal) => fold(0, (sum, e) => sum + getVal(e));
 
   /// Returns sum of double values by elements.
   ///
   /// [getVal] should return value for sum up. It can be property of element,
   /// or any another value by element.
-  double sumOfDouble(double getVal(E element)) =>
-      this.fold(0, (sum, e) => sum + getVal(e));
+  double sumOfDouble(GetValue<E, double> getVal) =>
+      fold(0, (sum, e) => sum + getVal(e));
 
   /// Returns the average value of int values by elements.
   ///
@@ -156,7 +163,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// It can be property of element, or any another value by element.
   ///
   /// If no elements, return `0`.
-  double avgOf(int getVal(E element)) {
+  double avgOf(GetValue<E, int> getVal) {
     final count = length;
     return count > 0 ? sumOf(getVal) / count : 0;
   }
@@ -167,7 +174,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// It can be property of element, or any another value by element.
   ///
   /// If no elements, return `0`.
-  double avgOfDouble(double getVal(E element)) {
+  double avgOfDouble(GetValue<E, double> getVal) {
     final count = length;
     return count > 0 ? sumOfDouble(getVal) / count : 0;
   }
@@ -178,7 +185,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// It can be property of element, or any another value by element.
   ///
   /// If no elements, return zero.
-  T maxOf<T extends num>(T getVal(E element)) {
+  T maxOf<T extends num>(GetValue<E, T> getVal) {
     return isEmpty ? _zero() : reduceValue(math.max, getVal);
   }
 
@@ -188,7 +195,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// It can be property of element, or any another value by element.
   ///
   /// If no elements, return zero.
-  T minOf<T extends num>(T getVal(E element)) {
+  T minOf<T extends num>(GetValue<E, T> getVal) {
     return isEmpty ? _zero() : reduceValue(math.min, getVal);
   }
 }
@@ -209,12 +216,12 @@ extension IntIterableExtensions on Iterable<int> {
   // Math
 
   /// Returns sum of values.
-  int sum() => this.fold(0, (sum, v) => sum + v);
+  int sum() => fold(0, (sum, v) => sum + v);
 
   /// Returns the average value of values.
   ///
   /// See [IterableExtensions.avgOf].
-  double avg() => this.isNotEmpty ? sum() / length : 0;
+  double avg() => isNotEmpty ? sum() / length : 0;
 }
 
 /// Extension methods for [Iterable] of double.
@@ -222,12 +229,12 @@ extension DoubleIterableExtensions on Iterable<double> {
   // Math
 
   /// Returns sum of values.
-  double sum() => this.fold(0, (sum, v) => sum + v);
+  double sum() => fold(0, (sum, v) => sum + v);
 
   /// Returns the average value of values.
   ///
   /// See [IterableExtensions.avgOfDouble].
-  double avg() => this.isNotEmpty ? sum() / length : 0;
+  double avg() => isNotEmpty ? sum() / length : 0;
 }
 
 /// Returns zero value for num, depends on required type.abs()
