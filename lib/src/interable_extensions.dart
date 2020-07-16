@@ -20,12 +20,9 @@ extension IterableExtensions<E> on Iterable<E> {
       fold(0, (count, e) => test(e) ? count + 1 : count);
 
   /// Returns `true` if the collection contains an element that satisfy the predicate [test].
+  @Deprecated('Use any() instead')
   bool containsWhere(TestPredicate<E> test) {
-    for (final e in this) {
-      if (test(e)) return true;
-    }
-
-    return false;
+    return any(test);
   }
 
   /// Returns `true` if the collection contains all elements from the [elements].
