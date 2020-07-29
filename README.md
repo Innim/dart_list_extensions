@@ -57,8 +57,8 @@ by iteratively combining its using the provided function.
 
 ### Math
 
-* `maxOf()` - return max of values by elements.
-* `minOf()` - return min of values by elements.
+* `maxOf()` - returns max of values by elements.
+* `minOf()` - returns min of values by elements.
 * `sumOf()`/`sumOfDouble()` - returns sum of values by elements.
 * `avgOf()`/`avgOfDouble()` - returns the average value of values by elements.
 

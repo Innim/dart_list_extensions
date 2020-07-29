@@ -1,5 +1,6 @@
 ## Next release
 
+## [0.1.12] - 2020-07-29
 
 * Getter `random` - returns a random element from the list.
 
