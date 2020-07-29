@@ -71,6 +71,13 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 ## `List` specific methods
 
+### Common
+
+#### Get an element
+
+* `random` -  returns a random element from the list.
+
+
 ### Transformation
 
 #### List

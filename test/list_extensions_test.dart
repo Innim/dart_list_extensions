@@ -3,6 +3,30 @@ import 'package:list_ext/list_ext.dart';
 
 void main() {
   group('List', () {
+    group('Common', () {
+      group('Get', () {
+        group('random', () {
+          test('should throw StateError if empty', () {
+            final list = [];
+
+            expect(
+              () => list.random,
+              throwsA(TypeMatcher<StateError>()),
+            );
+          });
+
+          test('should return element', () {
+            final list = [1, 2, 3];
+
+            expect(
+              list.random,
+              anyOf(1, 2, 3),
+            );
+          });
+        });
+      });
+    });
+
     group('Transformation', () {
       group('List', () {
         group('copyWith()', () {
