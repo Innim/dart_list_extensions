@@ -88,7 +88,5 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 ### Sorting
 
-#### List
-
 * `sortBy()` - Sorts the list in ascending order of the object's field value.
 * `sortByDescending()` - Sorts the list in descending order of the object's field value.
