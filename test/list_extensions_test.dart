@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+import 'package:quiver/collection.dart';
 import 'package:test/test.dart';
 import 'package:list_ext/list_ext.dart';
 
@@ -59,7 +61,62 @@ void main() {
             expect(res == add, false);
           });
         });
+
+        group('sortBy', () {
+          test('Sort ascending by element id', () {
+            final first = _TestItem(4, 'A');
+            final second = _TestItem(7, 'B');
+            final third = _TestItem(1, 'C');
+            final list = [first, second, third];
+            list.sortBy((e) => e.id);
+            expect(list.indexOf(first), 1);
+            expect(list.indexOf(second), 2);
+            expect(list.indexOf(third), 0);
+          });
+
+          test('Sort ascending by element value', () {
+            final first = _TestItem(10, 'F');
+            final second = _TestItem(15, 'E');
+            final third = _TestItem(8, 'D');
+            final list = [first, second, third];
+            list.sortBy((e) => e.value);
+            expect(list.indexOf(first), 2);
+            expect(list.indexOf(second), 1);
+            expect(list.indexOf(third), 0);
+          });
+        });
+
+        group('sortByDescending', () {
+          test('Sort descending by element id', () {
+            final first = _TestItem(20, 'G');
+            final second = _TestItem(30, 'H');
+            final third = _TestItem(10, 'I');
+            final list = [first, second, third];
+            list.sortByDescending((e) => e.id);
+            expect(list.indexOf(first), 1);
+            expect(list.indexOf(second), 0);
+            expect(list.indexOf(third), 2);
+          });
+
+          test('Sort descending by element value', () {
+            final first = _TestItem(70, 'J');
+            final second = _TestItem(88, 'K');
+            final third = _TestItem(36, 'L');
+            final list = [first, second, third];
+            list.sortByDescending((e) => e.value);
+            expect(list.indexOf(first), 2);
+            expect(list.indexOf(second), 1);
+            expect(list.indexOf(third), 0);
+          });
+        });
       });
     });
   });
+}
+
+class _TestItem {
+  final int id;
+  final String value;
+
+  _TestItem(this.id, this.value);
 }

@@ -33,4 +33,12 @@ extension ListExtensions<E> on List<E> {
   /// If current list is `null` - copy of list [elements] will be created.
   List<E> copyWithAll(List<E> elements) =>
       this == null ? List.from(elements) : (List.from(this)..addAll(elements));
+
+  /// Sorts the list in ascending order of the object's field value.
+  void sortBy(Comparable Function(E e) getVal) =>
+      sort((a, b) => getVal(a).compareTo(getVal(b)));
+
+  /// Sorts the list in descending order of the object's field value.
+  void sortByDescending(Comparable Function(E e) getVal) =>
+      sort((a, b) => getVal(b).compareTo(getVal(a)));
 }

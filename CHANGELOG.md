@@ -1,5 +1,10 @@
 ## Next release
 
+## [0.1.13] - 2020-08-25
+
+* Method `sortBy()` - sorts the list in ascending order of the object's field value.
+* Method `sortByDescending()` - sorts the list in descending order of the object's field value.
+
 ## [0.1.12] - 2020-07-29
 
 * Getter `random` - returns a random element from the list.
