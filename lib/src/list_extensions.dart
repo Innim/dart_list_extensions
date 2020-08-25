@@ -35,10 +35,10 @@ extension ListExtensions<E> on List<E> {
       this == null ? List.from(elements) : (List.from(this)..addAll(elements));
 
   /// Sorts the list in ascending order of the object's field value.
-  void sortBy(Comparable Function(E e) key) =>
-      sort((a, b) => key(a).compareTo(key(b)));
+  void sortBy(Comparable Function(E e) getVal) =>
+      sort((a, b) => getVal(a).compareTo(getVal(b)));
 
   /// Sorts the list in descending order of the object's field value.
-  void sortByDescending(Comparable Function(E e) key) =>
-      sort((a, b) => key(b).compareTo(key(a)));
+  void sortByDescending(Comparable Function(E e) getVal) =>
+      sort((a, b) => getVal(b).compareTo(getVal(a)));
 }
