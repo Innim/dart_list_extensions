@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+import 'package:quiver/collection.dart';
 import 'package:test/test.dart';
 import 'package:list_ext/list_ext.dart';
 
@@ -59,7 +61,49 @@ void main() {
             expect(res == add, false);
           });
         });
+
+        group('sortBy', () {
+          final first = _testItem(4, 'A');
+          final second = _testItem(7, 'B');
+          final third = _testItem(1, 'C');
+          final list = [first, second, third];
+
+          test('Sort ascending by element id', () {
+            list.sortBy((e) => e.id);
+            expect(list.indexOf(first), 1);
+            expect(list.indexOf(second), 2);
+            expect(list.indexOf(third), 0);
+          });
+
+          test('Sort descending by element id', () {
+            list.sortByDescending((e) => e.id);
+            expect(list.indexOf(first), 1);
+            expect(list.indexOf(second), 0);
+            expect(list.indexOf(third), 2);
+          });
+
+          test('Sort ascending by element value', () {
+            list.sortBy((e) => e.value);
+            expect(list.indexOf(first), 0);
+            expect(list.indexOf(second), 1);
+            expect(list.indexOf(third), 2);
+          });
+
+          test('Sort descending by element value', () {
+            list.sortByDescending((e) => e.value);
+            expect(list.indexOf(first), 2);
+            expect(list.indexOf(second), 1);
+            expect(list.indexOf(third), 0);
+          });
+        });
       });
     });
   });
+}
+
+class _testItem {
+  final int id;
+  final String value;
+
+  _testItem(this.id, this.value);
 }

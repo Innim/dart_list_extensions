@@ -84,3 +84,11 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `copyWith()` - Copy current list with adding element.
 * `copyWithAll()` - Copy current list with adding all elements from another list.
+
+
+### Sorting
+
+#### List
+
+* `sortBy()` - Sorts the list in ascending order of the object's field value.
+* `sortByDescending()` - Sorts the list in descending order of the object's field value.
