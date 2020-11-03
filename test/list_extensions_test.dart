@@ -96,6 +96,46 @@ void main() {
             expect(list.copyWithReplace(3, 5), []);
           });
         });
+
+        group('copyWithReplaceWhere()', () {
+          test('should replace element', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.copyWithReplaceWhere((e) => e.contains('c'), 'x');
+            expect(res, ['a', 'ab', 'x']);
+          });
+
+          test('should replace all element occurances', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.copyWithReplaceWhere((e) => e.contains('b'), 'x');
+            expect(res, ['a', 'x', 'x']);
+          });
+
+          test('should not change list if not element', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.copyWithReplaceWhere((e) => e.contains('d'), 'x');
+            expect(res, ['a', 'ab', 'abc']);
+          });
+
+          test('should copy list', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final c1 = list.copyWithReplaceWhere((e) => e.contains('b'), 'x');
+            final c2 = list.copyWithReplaceWhere((e) => e.contains('d'), 'x');
+
+            expect(identical(list, c1), false);
+            expect(identical(list, c2), false);
+            expect(list, ['a', 'ab', 'abc']);
+          });
+
+          test('should return empty list for null', () {
+            List<int> list;
+
+            expect(list.copyWithReplace(3, 5), []);
+          });
+        });
       });
     });
 

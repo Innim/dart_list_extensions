@@ -39,11 +39,23 @@ extension ListExtensions<E> on List<E> {
   /// Copy current list, replacing all [element] occurrences with [replacement].
   ///
   /// If [element] is not in the list than just copy will be returned.
-  /// If current list is `null` - new empty list.
+  /// If current list is `null` - returns new empty list.
   List<E> copyWithReplace(E element, E replacement) {
     return this == null
         ? const []
         : [for (final e in this) e == element ? replacement : e];
+  }
+
+  /// Copy current list, replacing elements of list that
+  /// satisfy [test] predicate with [replacement].
+  ///
+  /// If no elements that satisfy [test] predicate found
+  /// than just copy will be returned.
+  /// If current list is `null` - returns new empty list.
+  List<E> copyWithReplaceWhere(TestPredicate<E> test, E replacement) {
+    return this == null
+        ? const []
+        : [for (final e in this) test(e) ? replacement : e];
   }
 
   // Modification
