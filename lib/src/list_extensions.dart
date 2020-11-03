@@ -36,6 +36,16 @@ extension ListExtensions<E> on List<E> {
   List<E> copyWithAll(List<E> elements) =>
       this == null ? List.from(elements) : (List.from(this)..addAll(elements));
 
+  /// Copy current list, replacing all [element] occurrences with [replacement].
+  ///
+  /// If [element] is not in the list than just copy will be returned.
+  /// If current list is `null` - new empty list.
+  List<E> copyWithReplace(E element, E replacement) {
+    return this == null
+        ? const []
+        : [for (final e in this) e == element ? replacement : e];
+  }
+
   // Modification
 
   // Modification - Element

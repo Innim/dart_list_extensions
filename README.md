@@ -95,3 +95,4 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `copyWith()` - Copy current list with adding element.
 * `copyWithAll()` - Copy current list with adding all elements from another list.
+* `copyWithReplace()` - Copy current list, replacing all element occurrences with another element.

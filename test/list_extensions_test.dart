@@ -59,6 +59,43 @@ void main() {
             expect(res == add, false);
           });
         });
+
+        group('copyWithReplace()', () {
+          test('should replace element', () {
+            final list = [1, 2, 3];
+
+            expect(list.copyWithReplace(3, 5), [1, 2, 5]);
+          });
+
+          test('should replace all element occurances', () {
+            final list = [1, 2, 3, 2];
+
+            expect(list.copyWithReplace(2, 5), [1, 5, 3, 5]);
+          });
+
+          test('should not change list if not element', () {
+            final list = [1, 2, 3];
+
+            expect(list.copyWithReplace(4, 5), [1, 2, 3]);
+          });
+
+          test('should copy list', () {
+            final list = [1, 2, 3];
+
+            final copy1 = list.copyWithReplace(2, 5);
+            final copy2 = list.copyWithReplace(4, 5);
+
+            expect(identical(list, copy1), false);
+            expect(identical(list, copy2), false);
+            expect(list, [1, 2, 3]);
+          });
+
+          test('should return empty list for null', () {
+            List<int> list;
+
+            expect(list.copyWithReplace(3, 5), []);
+          });
+        });
       });
     });
 

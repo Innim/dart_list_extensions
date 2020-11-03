@@ -2,6 +2,7 @@
 
 * Method `List.replace()` - Remove element and replace it with another element.
 * Method `List.replaceWhere()` - Replace all elements of list that satisfy given predicate.
+* Method `List.copyWithReplace()` - Copy current list, replacing all element occurrences with another element.
 
 ## [0.1.13] - 2020-08-25
 
