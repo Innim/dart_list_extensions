@@ -77,6 +77,16 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `random` -  returns a random element from the list.
 
+### Modification
+
+#### Element
+
+* `replace()` - Remove element and replace it with another element.
+
+#### Sorting
+
+* `sortBy()` - Sorts the list in ascending order of the object's field value.
+* `sortByDescending()` - Sorts the list in descending order of the object's field value.
 
 ### Transformation
 
@@ -84,9 +94,3 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `copyWith()` - Copy current list with adding element.
 * `copyWithAll()` - Copy current list with adding all elements from another list.
-
-
-### Sorting
-
-* `sortBy()` - Sorts the list in ascending order of the object's field value.
-* `sortByDescending()` - Sorts the list in descending order of the object's field value.

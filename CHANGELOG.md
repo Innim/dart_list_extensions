@@ -1,5 +1,7 @@
 ## Next release
 
+* Method `List.replace()` - Remove element and replace it with another element.
+
 ## [0.1.13] - 2020-08-25
 
 * Method `sortBy()` - sorts the list in ascending order of the object's field value.

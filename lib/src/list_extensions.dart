@@ -34,6 +34,30 @@ extension ListExtensions<E> on List<E> {
   List<E> copyWithAll(List<E> elements) =>
       this == null ? List.from(elements) : (List.from(this)..addAll(elements));
 
+  // Modification
+
+  // Modification - Element
+
+  /// Replace [element] on [replacement]
+  ///
+  /// Returns `true` if element was replaced.
+  /// If [element] is not in the list than will be no changes.
+  /// If there are multiple [element] in list - all will be replaced.
+  bool replace(E element, E replacement) {
+    var found = false;
+    final len = length;
+    for (var i = 0; i < len; i++) {
+      if (element == this[i]) {
+        this[i] = replacement;
+        found = true;
+      }
+    }
+
+    return found;
+  }
+
+  // Modification - Sorting
+
   /// Sorts the list in ascending order of the object's field value.
   void sortBy(Comparable Function(E e) getVal) =>
       sort((a, b) => getVal(a).compareTo(getVal(b)));

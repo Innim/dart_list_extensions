@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-import 'package:quiver/collection.dart';
 import 'package:test/test.dart';
 import 'package:list_ext/list_ext.dart';
 
@@ -61,7 +59,38 @@ void main() {
             expect(res == add, false);
           });
         });
+      });
+    });
 
+    group('Modification', () {
+      group('Element', () {
+        group('replace', () {
+          test('should replace element and return true', () {
+            final list = [1, 2, 3];
+
+            final res = list.replace(2, 5);
+            expect(list, [1, 5, 3]);
+            expect(res, true);
+          });
+
+          test('should replace all elements and return true', () {
+            final list = [1, 2, 3, 1, 4];
+
+            final res = list.replace(1, 6);
+            expect(list, [6, 2, 3, 6, 4]);
+            expect(res, true);
+          });
+
+          test('should return false if no element', () {
+            final list = [1, 2, 3, 1, 4];
+
+            final res = list.replace(5, 6);
+            expect(list, [1, 2, 3, 1, 4]);
+            expect(res, false);
+          });
+        });
+      });
+      group('Sorting', () {
         group('sortBy', () {
           test('Sort ascending by element id', () {
             final first = _TestItem(4, 'A');
@@ -85,29 +114,29 @@ void main() {
             expect(list.indexOf(third), 0);
           });
         });
+      });
 
-        group('sortByDescending', () {
-          test('Sort descending by element id', () {
-            final first = _TestItem(20, 'G');
-            final second = _TestItem(30, 'H');
-            final third = _TestItem(10, 'I');
-            final list = [first, second, third];
-            list.sortByDescending((e) => e.id);
-            expect(list.indexOf(first), 1);
-            expect(list.indexOf(second), 0);
-            expect(list.indexOf(third), 2);
-          });
+      group('sortByDescending', () {
+        test('Sort descending by element id', () {
+          final first = _TestItem(20, 'G');
+          final second = _TestItem(30, 'H');
+          final third = _TestItem(10, 'I');
+          final list = [first, second, third];
+          list.sortByDescending((e) => e.id);
+          expect(list.indexOf(first), 1);
+          expect(list.indexOf(second), 0);
+          expect(list.indexOf(third), 2);
+        });
 
-          test('Sort descending by element value', () {
-            final first = _TestItem(70, 'J');
-            final second = _TestItem(88, 'K');
-            final third = _TestItem(36, 'L');
-            final list = [first, second, third];
-            list.sortByDescending((e) => e.value);
-            expect(list.indexOf(first), 2);
-            expect(list.indexOf(second), 1);
-            expect(list.indexOf(third), 0);
-          });
+        test('Sort descending by element value', () {
+          final first = _TestItem(70, 'J');
+          final second = _TestItem(88, 'K');
+          final third = _TestItem(36, 'L');
+          final list = [first, second, third];
+          list.sortByDescending((e) => e.value);
+          expect(list.indexOf(first), 2);
+          expect(list.indexOf(second), 1);
+          expect(list.indexOf(third), 0);
         });
       });
     });
