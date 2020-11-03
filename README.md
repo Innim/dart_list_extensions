@@ -81,7 +81,8 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 #### Element
 
-* `replace()` - Remove element and replace it with another element.
+* `replace()` - Remove all element occurrences and replace its with another element.
+* `replaceWhere()` - Replace all elements of list that satisfy given predicate.
 
 #### Sorting
 

@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:list_ext/list_ext.dart';
+
 /// Extension methods for any [List].
 extension ListExtensions<E> on List<E> {
   // Common
@@ -38,7 +40,7 @@ extension ListExtensions<E> on List<E> {
 
   // Modification - Element
 
-  /// Replace [element] on [replacement]
+  /// Replaces all [element] occurrences with [replacement].
   ///
   /// Returns `true` if element was replaced.
   /// If [element] is not in the list than will be no changes.
@@ -48,6 +50,24 @@ extension ListExtensions<E> on List<E> {
     final len = length;
     for (var i = 0; i < len; i++) {
       if (element == this[i]) {
+        this[i] = replacement;
+        found = true;
+      }
+    }
+
+    return found;
+  }
+
+  /// Replaces all elements of list that satisfy [test] predicate
+  /// with [replacement].
+  ///
+  /// Returns `true` if at least one element was replaced.
+  /// If no elements that satisfy [test] predicate found than will be no changes.
+  bool replaceWhere(TestPredicate<E> test, E replacement) {
+    var found = false;
+    final len = length;
+    for (var i = 0; i < len; i++) {
+      if (test(this[i])) {
         this[i] = replacement;
         found = true;
       }

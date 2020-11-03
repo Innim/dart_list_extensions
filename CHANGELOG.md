@@ -1,6 +1,7 @@
 ## Next release
 
 * Method `List.replace()` - Remove element and replace it with another element.
+* Method `List.replaceWhere()` - Replace all elements of list that satisfy given predicate.
 
 ## [0.1.13] - 2020-08-25
 

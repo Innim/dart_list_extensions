@@ -89,6 +89,32 @@ void main() {
             expect(res, false);
           });
         });
+        group('replaceWhere', () {
+          test('should replace element and return true', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.replaceWhere((e) => e.contains('c'), 'x');
+
+            expect(list, ['a', 'ab', 'x']);
+            expect(res, true);
+          });
+
+          test('should replace all elements and return true', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.replaceWhere((e) => e.contains('b'), 'x');
+            expect(list, ['a', 'x', 'x']);
+            expect(res, true);
+          });
+
+          test('should return false if no element', () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.replaceWhere((e) => e.contains('d'), 'x');
+            expect(list, ['a', 'ab', 'abc']);
+            expect(res, false);
+          });
+        });
       });
       group('Sorting', () {
         group('sortBy', () {
