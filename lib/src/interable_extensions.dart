@@ -3,7 +3,6 @@ import 'package:quiver/iterables.dart';
 import 'dart:math' as math;
 
 final _unorderedEquality = UnorderedIterableEquality();
-final _getNull = () => null;
 
 /// Function, that returns `true` if element is pass test.
 typedef TestPredicate<E> = bool Function(E element);
@@ -24,8 +23,8 @@ extension IterableExtensions<E> on Iterable<E> {
   /// Order of elements does not matter.
   ///
   /// See [contains].
-  bool containsAll(Iterable elements) {
-    for (E e in elements) {
+  bool containsAll(Iterable<E> elements) {
+    for (final e in elements) {
       if (!contains(e)) return false;
     }
 
@@ -33,16 +32,6 @@ extension IterableExtensions<E> on Iterable<E> {
   }
 
   // Common - Equality
-
-  /// Returns `true` if iterable is `null` or empty.
-  bool get isNullOrEmpty {
-    return this == null || isEmpty;
-  }
-
-  /// Returns `true` if iterable is not `null` and not empty.
-  bool get isNotNullOrEmpty {
-    return this != null && isNotEmpty;
-  }
 
   /// Check equality of the elements of this and [other] iterables
   /// without considering order.
@@ -59,17 +48,22 @@ extension IterableExtensions<E> on Iterable<E> {
   /// or `null` if no element satisfies.
   ///
   /// See [Iterable.firstWhere].
-  E firstWhereOrNull(TestPredicate<E> test) =>
-      firstWhere(test, orElse: _getNull);
+  E? firstWhereOrNull(TestPredicate<E> test) {
+    for (final element in this) {
+      if (test(element)) return element;
+    }
+
+    return null;
+  }
 
   // Common - Safe elements access
 
   /// Returns the first element or `null` if `this` is empty.
-  E get firstOrNull => isEmpty ? null : first;
+  E? get firstOrNull => isEmpty ? null : first;
 
   /// Returns the element at the [index] if exists
   /// or [orElse] if it is out of range.
-  E tryElementAt(int index, {E orElse}) {
+  E? tryElementAt(int index, {E? orElse}) {
     try {
       return elementAt(index);
     } catch (e) {
@@ -191,6 +185,20 @@ extension IterableExtensions<E> on Iterable<E> {
   }
 }
 
+extension NullableIterableExtensions<E> on Iterable<E>? {
+  // Common - Equality
+
+  /// Returns `true` if iterable is `null` or empty.
+  bool get isNullOrEmpty {
+    return this?.isEmpty ?? true;
+  }
+
+  /// Returns `true` if iterable is not `null` and not empty.
+  bool get isNotNullOrEmpty {
+    return this?.isNotEmpty ?? false;
+  }
+}
+
 /// Extension methods for [Iterable] of num.
 extension NumIterableExtensions<E extends num> on Iterable<E> {
   // Math
@@ -228,7 +236,7 @@ extension DoubleIterableExtensions on Iterable<double> {
   double avg() => isNotEmpty ? sum() / length : 0;
 }
 
-/// Returns zero value for num, depends on required type.abs()
+/// Returns zero value for num, depends on required type.
 ///
 /// It will be `0` for [int] and `0.0` for [double].
-T _zero<T extends num>() => T == int ? 0 : 0.0;
+T _zero<T extends num>() => T == int ? 0 as T : 0.0 as T;

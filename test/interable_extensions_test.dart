@@ -21,7 +21,7 @@ void main() {
           });
         });
 
-        group('containsA;;()', () {
+        group('containsAll()', () {
           test('should return true if has all of elements', () {
             final list = [1, 2, 3, 4];
 
@@ -54,14 +54,14 @@ void main() {
       group('Equality', () {
         group('isNullOrEmpty/isNotNullOrEmpty', () {
           test('null iterable', () {
-            Iterable list;
+            Iterable? list;
 
             expect(list.isNullOrEmpty, true);
             expect(list.isNotNullOrEmpty, false);
           });
 
           test('empty iterable', () {
-            Iterable list = [];
+            Iterable? list = [];
 
             expect(list.isNullOrEmpty, true);
             expect(list.isNotNullOrEmpty, false);
@@ -168,7 +168,7 @@ void main() {
             final list = <_E>[];
 
             expect(
-              () => list.reduceValue(
+              () => list.reduceValue<String>(
                 (val, elVal) => val + elVal,
                 (e) => e.strVal,
               ),
@@ -180,7 +180,7 @@ void main() {
             final list = [_E(strVal: 'first')];
 
             expect(
-              list.reduceValue(
+              list.reduceValue<String>(
                 (val, elVal) => val + elVal,
                 (e) => e.strVal,
               ),
@@ -192,7 +192,7 @@ void main() {
             final list = [_E(intVal: 1), _E(intVal: 3), _E(intVal: -2)];
 
             expect(
-              list.reduceValue(
+              list.reduceValue<int>(
                 (val, elVal) => val + elVal,
                 (e) => e.intVal,
               ),
@@ -498,7 +498,12 @@ class _E {
   final String strVal;
   final bool boolVal;
 
-  _E({this.intVal, this.doubleVal, this.strVal, this.boolVal});
+  _E({
+    this.intVal = 0,
+    this.doubleVal = 0,
+    this.strVal = '',
+    this.boolVal = false,
+  });
 
   @override
   String toString() {
