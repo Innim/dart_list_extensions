@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:list_ext/list_ext.dart';
-import 'package:tuple/tuple.dart';
+
+import 'tuple.dart';
 
 void main() {
   group('Iterable', () {
