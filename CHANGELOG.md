@@ -1,5 +1,7 @@
 ## Next release
 
+* **Removed** Removed deprecated method `containsWhere()`.
+
 ## [0.1.14] - 2020-11-03
 
 * Method `List.replace()` - Remove element and replace it with another element.

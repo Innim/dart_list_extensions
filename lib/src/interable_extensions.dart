@@ -19,12 +19,6 @@ extension IterableExtensions<E> on Iterable<E> {
   int countWhere(TestPredicate<E> test) =>
       fold(0, (count, e) => test(e) ? count + 1 : count);
 
-  /// Returns `true` if the collection contains an element that satisfy the predicate [test].
-  @Deprecated('Use any() instead')
-  bool containsWhere(TestPredicate<E> test) {
-    return any(test);
-  }
-
   /// Returns `true` if the collection contains all elements from the [elements].
   ///
   /// Order of elements does not matter.
