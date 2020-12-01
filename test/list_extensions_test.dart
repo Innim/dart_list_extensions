@@ -37,7 +37,7 @@ void main() {
           });
 
           test('copy null list with add element', () {
-            List<int> list;
+            List<int>? list;
 
             expect(list.copyWith(5), [5]);
           });
@@ -51,7 +51,7 @@ void main() {
           });
 
           test('copy null list with add elemens', () {
-            List<int> list;
+            List<int>? list;
             final add = [5, 6];
 
             final res = list.copyWithAll(add);
@@ -91,7 +91,7 @@ void main() {
           });
 
           test('should return empty list for null', () {
-            List<int> list;
+            List<int>? list;
 
             expect(list.copyWithReplace(3, 5), []);
           });
@@ -131,7 +131,7 @@ void main() {
           });
 
           test('should return empty list for null', () {
-            List<int> list;
+            List<int>? list;
 
             expect(list.copyWithReplace(3, 5), []);
           });
