@@ -1,5 +1,8 @@
 ## Next release
 
+## [1.0.0-nullsafety.0] - 2020-12-01
+
+* Migrated to null safety.
 * **Removed** Removed deprecated method `containsWhere()`.
 
 ## [0.1.14] - 2020-11-03
