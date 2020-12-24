@@ -14,12 +14,10 @@ class IntersperseIterator<E> extends Iterator<E> {
   final E _element;
   final int _length;
 
-  int _index;
-  bool _even;
+  int _index = 0;
+  bool _even = true;
 
-  IntersperseIterator(this._iterator, this._element, this._length) {
-    _index = 0;
-  }
+  IntersperseIterator(this._iterator, this._element, this._length);
 
   @override
   bool moveNext() {
