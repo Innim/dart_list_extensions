@@ -1,5 +1,9 @@
 ## Next release
 
+## [0.1.15] - 2020-11-24
+
+* Method `intersperse()` - Adds an element between elements of the iterable.
+
 ## [0.1.14] - 2020-11-03
 
 * Method `List.replace()` - Remove element and replace it with another element.

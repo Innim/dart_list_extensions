@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:list_ext/src/interables.dart';
 import 'package:quiver/iterables.dart';
 import 'dart:math' as math;
 
@@ -119,6 +120,18 @@ extension IterableExtensions<E> on Iterable<E> {
   /// [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
   /// ```
   Iterable<List<E>> chunks(int size) => partition(this, size);
+
+  /// Adds [element] between elements of the iterable.
+  ///
+  /// Example: if we have `[1, 2, 3]` and adds `0`, then as a result
+  /// we will have `[1, 0, 2, 0, 3]`.
+  ///
+  /// If iterable is empty then returns empty iterable.
+  ///
+  /// If iterable have only one element then
+  /// returns interable with only one element.
+  Iterable<E> intersperse(E element) =>
+      isEmpty ? [] : IntersperseIterable(this, element);
 
   // Transformation - String
 

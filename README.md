@@ -48,6 +48,7 @@ by iteratively combining its using the provided function.
 
 #### Iterables
 * `chunks()` - splits into chunks of the specified size.
+* `intersperse()` - adds an element between elements of the iterable.
 
 #### String
 * `joinOf()` - get string value for each element and concatenates it with passed separator.
