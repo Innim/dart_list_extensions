@@ -215,6 +215,23 @@ void main() {
             ]);
           });
         });
+
+        group('intersperse()', () {
+          test('should return empty iterable for empty iterable', () {
+            final list = <int>[];
+            expect(list.intersperse(0), []);
+          });
+
+          test('should return same iterable for iterable with 1 element', () {
+            final list = <int>[1];
+            expect(list.intersperse(0), [1]);
+          });
+
+          test('should return correct iterable', () {
+            expect([1, 2].intersperse(0), [1, 0, 2]);
+            expect([1, 2, 3].intersperse(0), [1, 0, 2, 0, 3]);
+          });
+        });
       });
 
       group('String', () {

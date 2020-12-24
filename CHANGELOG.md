@@ -1,5 +1,9 @@
 ## Next release
 
+## [1.0.1-nullsafety.0] - 2020-11-24
+
+* Method `intersperse()` - Adds an element between elements of the iterable.
+
 ## [1.0.0-nullsafety.0] - 2020-12-01
 
 * Migrated to null safety.
