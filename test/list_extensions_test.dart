@@ -7,11 +7,11 @@ void main() {
       group('Get', () {
         group('random', () {
           test('should throw StateError if empty', () {
-            final list = [];
+            final list = <Object>[];
 
             expect(
               () => list.random,
-              throwsA(TypeMatcher<StateError>()),
+              throwsA(const TypeMatcher<StateError>()),
             );
           });
 
@@ -93,7 +93,7 @@ void main() {
           test('should return empty list for null', () {
             List<int> list;
 
-            expect(list.copyWithReplace(3, 5), []);
+            expect(list.copyWithReplace(3, 5), <int>[]);
           });
         });
 
@@ -133,7 +133,7 @@ void main() {
           test('should return empty list for null', () {
             List<int> list;
 
-            expect(list.copyWithReplace(3, 5), []);
+            expect(list.copyWithReplace(3, 5), <int>[]);
           });
         });
       });

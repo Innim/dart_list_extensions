@@ -3,6 +3,7 @@
 
 * Method `toMap()` use functions with specified element type (may be **breaking** in some cases).
 That's because implementation with dynamic makes usage very inconvenient.
+* Use [innim_lint](https://pub.dev/packages/innim_lint) analysis options.
 
 ## [0.1.15] - 2020-11-24
 

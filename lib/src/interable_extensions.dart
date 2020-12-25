@@ -3,8 +3,7 @@ import 'package:list_ext/src/interables.dart';
 import 'package:quiver/iterables.dart';
 import 'dart:math' as math;
 
-final _unorderedEquality = UnorderedIterableEquality();
-final _getNull = () => null;
+final _unorderedEquality = <Type, UnorderedIterableEquality>{};
 
 /// Function, that returns `true` if element is pass test.
 typedef TestPredicate<E> = bool Function(E element);
@@ -31,8 +30,8 @@ extension IterableExtensions<E> on Iterable<E> {
   /// Order of elements does not matter.
   ///
   /// See [contains].
-  bool containsAll(Iterable elements) {
-    for (E e in elements) {
+  bool containsAll(Iterable<E> elements) {
+    for (final e in elements) {
       if (!contains(e)) return false;
     }
 
@@ -58,7 +57,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// and the elements of this iterable can be paired with the elements of
   /// the other iterable, so that each pair are equal.
   bool isUnorderedEquivalent(Iterable<E> other) =>
-      _unorderedEquality.equals(this, other);
+      _getUnorderedEquality<E>().equals(this, other);
 
   // Common - Search
 
@@ -250,4 +249,11 @@ extension DoubleIterableExtensions on Iterable<double> {
 /// Returns zero value for num, depends on required type.abs()
 ///
 /// It will be `0` for [int] and `0.0` for [double].
-T _zero<T extends num>() => T == int ? 0 : 0.0;
+T _zero<T extends num>() => (T == int ? 0 : 0.0) as T;
+
+T _getNull<T>() => null;
+
+UnorderedIterableEquality<T>
+    _getUnorderedEquality<T>() => (_unorderedEquality[T] ??
+            (_unorderedEquality[T] = UnorderedIterableEquality<T>()))
+        as UnorderedIterableEquality<T>;

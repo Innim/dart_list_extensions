@@ -27,7 +27,7 @@ class IntersperseIterator<E> extends Iterator<E> {
 
     _even = _index % 2 == 0;
     _index++;
-    return _even ? _iterator.moveNext() : true;
+    return !_even || _iterator.moveNext();
   }
 
   @override

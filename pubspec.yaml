@@ -15,4 +15,4 @@ dependencies:
 dev_dependencies:
   test: ^1.14.2
   tuple: ^1.0.3
-  pedantic: ^1.9.2
+  innim_lint: ^0.1.3

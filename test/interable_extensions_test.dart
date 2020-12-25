@@ -60,7 +60,7 @@ void main() {
           });
 
           test('empty iterable', () {
-            Iterable list = [];
+            final Iterable list = <Object>[];
 
             expect(list.isNullOrEmpty, true);
             expect(list.isNotNullOrEmpty, false);
@@ -129,7 +129,7 @@ void main() {
           });
 
           test('should return null if empty', () {
-            final list = [];
+            final list = <Object>[];
 
             expect(list.firstOrNull, null);
           });
@@ -167,11 +167,11 @@ void main() {
             final list = <_E>[];
 
             expect(
-              () => list.reduceValue(
+              () => list.reduceValue<String>(
                 (val, elVal) => val + elVal,
                 (e) => e.strVal,
               ),
-              throwsA(TypeMatcher<StateError>()),
+              throwsA(const TypeMatcher<StateError>()),
             );
           });
 
@@ -179,7 +179,7 @@ void main() {
             final list = [_E(strVal: 'first')];
 
             expect(
-              list.reduceValue(
+              list.reduceValue<String>(
                 (val, elVal) => val + elVal,
                 (e) => e.strVal,
               ),
@@ -191,7 +191,7 @@ void main() {
             final list = [_E(intVal: 1), _E(intVal: 3), _E(intVal: -2)];
 
             expect(
-              list.reduceValue(
+              list.reduceValue<int>(
                 (val, elVal) => val + elVal,
                 (e) => e.intVal,
               ),
@@ -218,7 +218,7 @@ void main() {
         group('intersperse()', () {
           test('should return empty iterable for empty iterable', () {
             final list = <int>[];
-            expect(list.intersperse(0), []);
+            expect(list.intersperse(0), <int>[]);
           });
 
           test('should return same iterable for iterable with 1 element', () {
@@ -300,7 +300,7 @@ void main() {
         });
 
         test('avg of empty', () {
-          final list = [];
+          final list = <_E>[];
 
           expect(list.avgOf((e) => e.intVal), 0);
         });
@@ -320,7 +320,7 @@ void main() {
         });
 
         test('avg of double empty', () {
-          final list = [];
+          final list = <_E>[];
 
           expect(list.avgOfDouble((e) => e.doubleVal), 0);
         });
@@ -464,11 +464,12 @@ void main() {
     });
 
     group('avg()', () {
+      final item2 = [5, 4];
       final data = <Tuple3<String, Iterable<int>, double>>[
-        Tuple3('simple', [1, 3, 5], 3),
-        Tuple3('negative', [3, -2, 5], 2),
-        Tuple3('float', [5, 4], 4.5),
-        Tuple3('empty', [], 0),
+        const Tuple3('simple', [1, 3, 5], 3),
+        const Tuple3('negative', [3, -2, 5], 2),
+        Tuple3('float', item2, 4.5),
+        const Tuple3('empty', [], 0),
       ];
 
       for (final d in data) {
@@ -492,9 +493,9 @@ void main() {
 
     group('avg()', () {
       final data = <Tuple3<String, Iterable<double>, double>>[
-        Tuple3('simple', [1.6, 2.3, 5.7], 3.2),
-        Tuple3('negative', [1.3, 2.3, -5.7], -.7),
-        Tuple3('empty', [], 0),
+        const Tuple3('simple', [1.6, 2.3, 5.7], 3.2),
+        const Tuple3('negative', [1.3, 2.3, -5.7], -.7),
+        const Tuple3('empty', [], 0),
       ];
 
       for (final d in data) {
