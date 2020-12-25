@@ -1,5 +1,6 @@
 ## Next release
 
+## [0.2.0] - 2020-11-25
 
 * Method `toMap()` use functions with specified element type (may be **breaking** in some cases).
 That's because implementation with dynamic makes usage very inconvenient.
