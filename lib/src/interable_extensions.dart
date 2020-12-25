@@ -149,8 +149,8 @@ extension IterableExtensions<E> on Iterable<E> {
   /// [getKey] used to get key for result Map.
   /// [getVal] used to get value for result Map.
   Map<TKey, TVal> toMap<TKey, TVal>(
-          GetValue<dynamic, TKey> getKey, GetValue<dynamic, TVal> getVal) =>
-      Map.fromIterable(this, key: getKey, value: getVal);
+          GetValue<E, TKey> getKey, GetValue<E, TVal> getVal) =>
+      {for (final e in this) getKey(e): getVal(e)};
 
   // Math
 

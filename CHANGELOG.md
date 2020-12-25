@@ -1,5 +1,9 @@
 ## Next release
 
+
+* Method `toMap()` use functions with specified element type (may be **breaking** in some cases).
+That's because implementation with dynamic makes usage very inconvenient.
+
 ## [0.1.15] - 2020-11-24
 
 * Method `intersperse()` - Adds an element between elements of the iterable.
