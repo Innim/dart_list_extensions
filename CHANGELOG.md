@@ -1,5 +1,11 @@
 ## Next release
 
+## [1.0.2] - 2020-03-04
+
+* Method `toMap()` use functions with specified element type (may be **breaking** in some cases).
+That's because implementation with dynamic makes usage very inconvenient.
+* Use [innim_lint](https://pub.dev/packages/innim_lint) analysis options.
+
 ## [1.0.1-nullsafety.0] - 2020-11-24
 
 * Method `intersperse()` - Adds an element between elements of the iterable.

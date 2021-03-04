@@ -3,7 +3,7 @@ import 'package:list_ext/src/interables.dart';
 import 'package:quiver/iterables.dart';
 import 'dart:math' as math;
 
-final _unorderedEquality = UnorderedIterableEquality();
+final _unorderedEquality = <Type, UnorderedIterableEquality>{};
 
 /// Function, that returns `true` if element is pass test.
 typedef TestPredicate<E> = bool Function(E element);
@@ -41,7 +41,7 @@ extension IterableExtensions<E> on Iterable<E> {
   /// and the elements of this iterable can be paired with the elements of
   /// the other iterable, so that each pair are equal.
   bool isUnorderedEquivalent(Iterable<E> other) =>
-      _unorderedEquality.equals(this, other);
+      _getUnorderedEquality<E>().equals(this, other);
 
   // Common - Search
 
@@ -137,8 +137,8 @@ extension IterableExtensions<E> on Iterable<E> {
   /// [getKey] used to get key for result Map.
   /// [getVal] used to get value for result Map.
   Map<TKey, TVal> toMap<TKey, TVal>(
-          GetValue<dynamic, TKey> getKey, GetValue<dynamic, TVal> getVal) =>
-      Map.fromIterable(this, key: getKey, value: getVal);
+          GetValue<E, TKey> getKey, GetValue<E, TVal> getVal) =>
+      {for (final e in this) getKey(e): getVal(e)};
 
   // Math
 
@@ -253,3 +253,8 @@ extension DoubleIterableExtensions on Iterable<double> {
 ///
 /// It will be `0` for [int] and `0.0` for [double].
 T _zero<T extends num>() => T == int ? 0 as T : 0.0 as T;
+
+UnorderedIterableEquality<T>
+    _getUnorderedEquality<T>() => (_unorderedEquality[T] ??
+            (_unorderedEquality[T] = UnorderedIterableEquality<T>()))
+        as UnorderedIterableEquality<T>;
