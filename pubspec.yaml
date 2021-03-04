@@ -6,12 +6,12 @@ repository: https://github.com/Innim/dart_list_extensions
 issue_tracker: https://github.com/Innim/dart_list_extensions/issues
 
 environment:
-  sdk: ">=2.12.0-0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  quiver: ^3.0.0-nullsafety.2
-  collection: ^1.15.0-nullsafety.5
+  quiver: ^3.0.0
+  collection: ^1.15.0
 
 dev_dependencies:
-  test: ^1.16.0-nullsafety.12
+  test: ^1.16.0
   innim_lint: ^0.1.3
