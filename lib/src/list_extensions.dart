@@ -41,6 +41,12 @@ extension ListExtensions<E> on List<E> {
     return [for (final e in this) e == element ? replacement : e];
   }
 
+  /// Copy current list with adding all [elements] at the position of new list.
+  ///
+  /// If current list is `null` - copy of list [elements] will be created.
+  List<E> copyWithInsertAll(int index, List<E> elements) =>
+      List.from(this)..insertAll(index, elements);
+
   /// Copy current list, replacing elements of list that
   /// satisfy [test] predicate with [replacement].
   ///

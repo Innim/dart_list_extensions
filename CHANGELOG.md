@@ -1,5 +1,9 @@
 ## Next release
 
+## [1.0.3] - 2020-10-14
+
+* Method `List.copyWithInsertAll()` - copy current list with adding all elements at the position of new list.
+
 ## [1.0.2] - 2020-03-04
 
 * Method `toMap()` use functions with specified element type (may be **breaking** in some cases).
