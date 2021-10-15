@@ -60,6 +60,52 @@ void main() {
           });
         });
 
+        group('copyWithInsertAll()', () {
+          test('copy list with add elements to between position', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.copyWithInsertAll(2, [5, 6]), [1, 2, 5, 6, 3, 4]);
+          });
+
+          test('copy list with add elements to 0 position', () {
+            final list = [1, 2, 3];
+
+            expect(list.copyWithInsertAll(0, [5, 6]), [5, 6, 1, 2, 3]);
+          });
+
+          test('copy list with add elements to last position', () {
+            final list = [1, 2, 3];
+
+            expect(
+                list.copyWithInsertAll(list.length, [5, 6]), [1, 2, 3, 5, 6]);
+          });
+
+          test('copy null list with add elemens', () {
+            List<int>? list;
+            final add = [5, 6];
+
+            final res = list.copyWithInsertAll(0, add);
+            expect(res, [5, 6]);
+            expect(res == add, false);
+          });
+
+          test('copy null list with add elemens to not 0 position', () {
+            List<int>? list;
+            final add = [5, 6];
+
+            final res = list.copyWithInsertAll(10, add);
+            expect(res, [5, 6]);
+            expect(res == add, false);
+          });
+
+          test('should throw RangeError if index to greater than length.', () {
+            final list = [1, 2, 3];
+
+            expect(() => list.copyWithInsertAll(100, [5, 6]),
+                throwsA(isA<RangeError>()));
+          });
+        });
+
         group('copyWithReplace()', () {
           test('should replace element', () {
             final list = [1, 2, 3];

@@ -99,3 +99,4 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 * `copyWithReplace()` - Copy current list, replacing all element occurrences with another element.
 * `copyWithReplaceWhere()` - Copy current list, replacing elements of list
 that satisfy given predicate with another element.
+* `copyWithInsertAll()` - Copy current list with adding all elements at the provided position of new list.
