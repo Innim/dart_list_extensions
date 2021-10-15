@@ -44,6 +44,7 @@ extension ListExtensions<E> on List<E> {
   /// Copy current list with adding all [elements] at the position of new list.
   ///
   /// If current list is `null` - copy of list [elements] will be created.
+  /// Error throwed due to a value being outside a valid range.
   List<E> copyWithInsertAll(int index, List<E> elements) =>
       List.from(this)..insertAll(index, elements);
 
@@ -123,6 +124,13 @@ extension NullableListExtensions<E> on List<E>? {
   /// If current list is `null` - copy of list [elements] will be created.
   List<E> copyWithAll(List<E> elements) =>
       this?.copyWithAll(elements) ?? List.from(elements);
+
+  /// Copy current list with adding all [elements] at the position of new list.
+  ///
+  /// If current list is `null` - copy of list [elements] will be created.
+  /// Error throwed due to a value being outside a valid range.
+  List<E> copyWithInsertAll(int index, List<E> elements) =>
+      this?.copyWithInsertAll(index, elements) ?? List.from(elements);
 
   /// Copy current list, replacing all [element] occurrences with [replacement].
   ///
