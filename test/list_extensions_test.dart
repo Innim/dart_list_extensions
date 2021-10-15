@@ -61,6 +61,12 @@ void main() {
         });
 
         group('copyWithInsertAll()', () {
+          test('copy list with add elements to between position', () {
+            final list = [1, 2, 3, 4];
+
+            expect(list.copyWithInsertAll(2, [5, 6]), [1, 2, 5, 6, 3, 4]);
+          });
+
           test('copy list with add elements to 0 position', () {
             final list = [1, 2, 3];
 
@@ -79,6 +85,15 @@ void main() {
             final add = [5, 6];
 
             final res = list.copyWithInsertAll(0, add);
+            expect(res, [5, 6]);
+            expect(res == add, false);
+          });
+
+          test('copy null list with add elemens to not 0 position', () {
+            List<int>? list;
+            final add = [5, 6];
+
+            final res = list.copyWithInsertAll(10, add);
             expect(res, [5, 6]);
             expect(res == add, false);
           });
