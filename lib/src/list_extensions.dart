@@ -97,6 +97,19 @@ extension ListExtensions<E> on List<E> {
     return found;
   }
 
+  /// Adds [value] to the end of this list
+  /// only if it's not null.
+  ///
+  /// The list must be growable.
+  bool addIfNotNull(E? value) {
+    if (value != null) {
+      add(value);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Modification - Sorting
 
   /// Sorts the list in ascending order of the object's field value.

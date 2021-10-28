@@ -84,6 +84,7 @@ There are specific version of methods for Iterables of num (`int` and `double`):
 
 * `replace()` - Remove all element occurrences and replace its with another element.
 * `replaceWhere()` - Replace all elements of list that satisfy given predicate.
+* `addIfNotNull()` - Adds element to the end of this list if this element is not null.
 
 #### Sorting
 

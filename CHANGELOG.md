@@ -1,5 +1,9 @@
 ## Next release
 
+## [1.0.4] - 2020-10-28
+
+* Method `List.addIfNotNull()` - adds element to the end of this list if this element is not null.
+
 ## [1.0.3] - 2020-10-14
 
 * Method `List.copyWithInsertAll()` - copy current list with adding all elements at the position of new list.

@@ -238,6 +238,35 @@ void main() {
             expect(res, false);
           });
         });
+
+        group('addIfNotNull()', () {
+          test("should add element if it's not null", () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.addIfNotNull('abcd');
+
+            expect(list, ['a', 'ab', 'abc', 'abcd']);
+            expect(res, true);
+          });
+
+          test("should not add element if it's null", () {
+            final list = ['a', 'ab', 'abc'];
+
+            final res = list.addIfNotNull(null);
+
+            expect(list, ['a', 'ab', 'abc']);
+            expect(res, false);
+          });
+
+          test("should not add element in list of nullables if it's null", () {
+            final list = ['a', null, 'abc'];
+
+            final res = list.addIfNotNull(null);
+
+            expect(list, ['a', null, 'abc']);
+            expect(res, false);
+          });
+        });
       });
       group('Sorting', () {
         group('sortBy', () {
