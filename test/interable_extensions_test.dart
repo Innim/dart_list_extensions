@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:list_ext/list_ext.dart';
+import 'package:test/test.dart';
 
 import 'tuple.dart';
 
@@ -281,6 +281,14 @@ void main() {
         });
       });
 
+      group('sumOfBigInt()', () {
+        test('sum of BigInt elements property', () {
+          final list = [_E(bigIntVal: BigInt.two), _E(bigIntVal: BigInt.one)];
+
+          expect(list.sumOfBigInt((e) => e.bigIntVal!), BigInt.from(3));
+        });
+      });
+
       group('avgOf()', () {
         test('ceil avg of int elements property', () {
           final list = [_E(intVal: 1), _E(intVal: 3)];
@@ -409,6 +417,18 @@ void main() {
         expect(list.max(), 0);
       });
 
+      test('max of BigInt', () {
+        final list = [BigInt.one, BigInt.zero, BigInt.two];
+
+        expect(list.max(), BigInt.two);
+      });
+
+      test('max of BigInt for empty', () {
+        final list = <BigInt>[];
+
+        expect(list.max(), BigInt.zero);
+      });
+
       test('max of double', () {
         final list = [-1.2, -10.0, -4.3];
 
@@ -439,6 +459,29 @@ void main() {
         final list = <int>[];
 
         expect(list.min(), 0);
+      });
+
+      test('min of BigInt', () {
+        final list = [BigInt.from(10), BigInt.from(10), BigInt.from(10)];
+
+        expect(list.min(), BigInt.from(10));
+      });
+
+      test('min of BigInt with zero', () {
+        final list = [
+          BigInt.from(10),
+          BigInt.from(20),
+          BigInt.zero,
+          BigInt.two,
+        ];
+
+        expect(list.min(), BigInt.zero);
+      });
+
+      test('min of BigInt for empty', () {
+        final list = <BigInt>[];
+
+        expect(list.min(), BigInt.zero);
       });
 
       test('min of double', () {
@@ -515,16 +558,19 @@ class _E {
   final double doubleVal;
   final String strVal;
   final bool boolVal;
+  final BigInt? bigIntVal;
 
   _E({
     this.intVal = 0,
     this.doubleVal = 0,
     this.strVal = '',
     this.boolVal = false,
+    this.bigIntVal,
   });
 
   @override
   String toString() {
-    return '_E{intVal: $intVal, doubleVal: $doubleVal, strVal: $strVal, boolVal: $boolVal}';
+    return '_E{intVal: $intVal, doubleVal: $doubleVal, strVal: $strVal, '
+        'boolVal: $boolVal, bigIntVal: $bigIntVal}';
   }
 }
