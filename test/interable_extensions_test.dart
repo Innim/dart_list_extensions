@@ -3,6 +3,8 @@ import 'package:list_ext/list_ext.dart';
 
 import 'tuple.dart';
 
+import 'package:quiver/iterables.dart';
+
 void main() {
   group('Iterable', () {
     group('Common', () {
@@ -230,6 +232,21 @@ void main() {
           test('should return correct iterable', () {
             expect([1, 2].intersperse(0), [1, 0, 2]);
             expect([1, 2, 3].intersperse(0), [1, 0, 2, 0, 3]);
+          });
+        });
+
+        group('mapIndex()', () {
+          test('should return empty iterable for empty iterable', () {
+            final list = <int>[];
+            expect(list.mapIndex((e, i) => e), <int>[]);
+          });
+
+          test('should return correct iterable', () {
+            expect([1, 2, 3].mapIndex((e, i) => e * i), [0, 2, 6]);
+            expect(
+              ['a', 'b', 'c'].mapIndex((e, i) => '$i:$e'),
+              ['0:a', '1:b', '2:c'],
+            );
           });
         });
       });

@@ -5,11 +5,14 @@ import 'dart:math' as math;
 
 final _unorderedEquality = <Type, UnorderedIterableEquality>{};
 
-/// Function, that returns `true` if element is pass test.
+/// Function that returns `true` if element passes test.
 typedef TestPredicate<E> = bool Function(E element);
 
-/// Function, that value [T] for tha elemet.
+/// Function that gets value [T] for that element.
 typedef GetValue<E, T> = T Function(E element);
+
+/// Function that returns value [T] for the element and index
+typedef MapIndexedValue<E, T> = T Function(E element, int index);
 
 /// Extension methods for any [Iterable].
 extension IterableExtensions<E> on Iterable<E> {
@@ -120,6 +123,19 @@ extension IterableExtensions<E> on Iterable<E> {
   /// returns interable with only one element.
   Iterable<E> intersperse(E element) =>
       isEmpty ? [] : IntersperseIterable(this, element);
+
+  /// Maps over the iterable passing the index and element to the callback.
+  ///
+  /// Example: if we have `['a', 'b', 'c']`, then the callback is called
+  /// with ('a', 0), ('b', 1), then ('c', 2).
+  ///
+  /// Returns a new lazy iterable with elements that are created by
+  /// calling `toElement` on each element of this `Iterable` in
+  /// iteration order with a generated index.
+  ///
+  /// See [Iterable.map] for caveats about the lazy iterable.
+  Iterable<T> mapIndex<T>(MapIndexedValue<E, T> toElement) =>
+      enumerate(this).map((e) => toElement(e.value, e.index));
 
   // Transformation - String
 
