@@ -227,23 +227,17 @@ extension NumIterableExtensions<E extends num> on Iterable<E> {
 extension BigIntItrableExtention on Iterable<BigInt> {
   /// Returns max value of values.
   BigInt min() {
-    var min = isEmpty ? BigInt.zero : first;
-    for (final item in this) {
-      if (item < min) {
-        min = item;
-      }
-    }
+    final min = isEmpty
+        ? BigInt.zero
+        : reduce((value, element) => value < element ? value : element);
     return min;
   }
 
   /// Returns min value of values.
   BigInt max() {
-    var max = isEmpty ? BigInt.zero : first;
-    for (final item in this) {
-      if (item > max) {
-        max = item;
-      }
-    }
+    final max = isEmpty
+        ? BigInt.zero
+        : reduce((value, element) => value > element ? value : element);
     return max;
   }
 }

@@ -403,6 +403,42 @@ void main() {
     });
   });
 
+  group('Iterable of BigInt', () {
+    test('max of BigInt', () {
+      final list = [BigInt.one, BigInt.zero, BigInt.two];
+
+      expect(list.max(), BigInt.two);
+    });
+
+    test('max of BigInt for empty', () {
+      final list = <BigInt>[];
+
+      expect(list.max(), BigInt.zero);
+    });
+
+    test('min of BigInt', () {
+      final list = [BigInt.from(10), BigInt.from(12), BigInt.from(20)];
+
+      expect(list.min(), BigInt.from(10));
+    });
+
+    test('min of BigInt with zero', () {
+      final list = [
+        BigInt.from(10),
+        BigInt.from(20),
+        BigInt.zero,
+        BigInt.two,
+      ];
+
+      expect(list.min(), BigInt.zero);
+    });
+
+    test('min of BigInt for empty', () {
+      final list = <BigInt>[];
+
+      expect(list.min(), BigInt.zero);
+    });
+  });
   group('Iterable of num', () {
     group('max()', () {
       test('max of int', () {
@@ -415,18 +451,6 @@ void main() {
         final list = <int>[];
 
         expect(list.max(), 0);
-      });
-
-      test('max of BigInt', () {
-        final list = [BigInt.one, BigInt.zero, BigInt.two];
-
-        expect(list.max(), BigInt.two);
-      });
-
-      test('max of BigInt for empty', () {
-        final list = <BigInt>[];
-
-        expect(list.max(), BigInt.zero);
       });
 
       test('max of double', () {
@@ -459,29 +483,6 @@ void main() {
         final list = <int>[];
 
         expect(list.min(), 0);
-      });
-
-      test('min of BigInt', () {
-        final list = [BigInt.from(10), BigInt.from(10), BigInt.from(10)];
-
-        expect(list.min(), BigInt.from(10));
-      });
-
-      test('min of BigInt with zero', () {
-        final list = [
-          BigInt.from(10),
-          BigInt.from(20),
-          BigInt.zero,
-          BigInt.two,
-        ];
-
-        expect(list.min(), BigInt.zero);
-      });
-
-      test('min of BigInt for empty', () {
-        final list = <BigInt>[];
-
-        expect(list.min(), BigInt.zero);
       });
 
       test('min of double', () {
