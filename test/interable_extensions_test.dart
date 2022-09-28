@@ -3,8 +3,6 @@ import 'package:list_ext/list_ext.dart';
 
 import 'tuple.dart';
 
-import 'package:quiver/iterables.dart';
-
 void main() {
   group('Iterable', () {
     group('Common', () {

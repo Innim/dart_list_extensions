@@ -1,5 +1,9 @@
 ## Next release
 
+## [1.0.5] - 2022-09-28
+
+* Method `Iterable.mapIndex()` - creates a new iterable by passing each element and index to a callback.
+
 ## [1.0.4] - 2020-10-28
 
 * Method `List.addIfNotNull()` - adds element to the end of this list if this element is not null.

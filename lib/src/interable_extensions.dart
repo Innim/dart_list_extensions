@@ -124,7 +124,7 @@ extension IterableExtensions<E> on Iterable<E> {
   Iterable<E> intersperse(E element) =>
       isEmpty ? [] : IntersperseIterable(this, element);
 
-  /// Maps over the iterable passing the index and element to the callback.
+  /// Create a new iterable by passing each element and index to the callback.
   ///
   /// Example: if we have `['a', 'b', 'c']`, then the callback is called
   /// with ('a', 0), ('b', 1), then ('c', 2).
