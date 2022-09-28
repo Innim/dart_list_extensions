@@ -1,7 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:collection/collection.dart';
 import 'package:list_ext/src/interables.dart';
 import 'package:quiver/iterables.dart';
-import 'dart:math' as math;
 
 final _unorderedEquality = <Type, UnorderedIterableEquality>{};
 
@@ -221,6 +222,29 @@ extension NumIterableExtensions<E extends num> on Iterable<E> {
 
   /// Returns min value of values.
   E min() => isEmpty ? _zero() : reduce(math.min);
+}
+
+extension BigIntItrableExtention on Iterable<BigInt> {
+  /// Returns max value of values.
+  BigInt min() {
+    final min = isEmpty
+        ? BigInt.zero
+        : reduce((value, element) => value < element ? value : element);
+    return min;
+  }
+
+  /// Returns min value of values.
+  BigInt max() {
+    final max = isEmpty
+        ? BigInt.zero
+        : reduce((value, element) => value > element ? value : element);
+    return max;
+  }
+}
+
+extension IterableExtension<E> on Iterable<E> {
+  BigInt sumOfBigInt(GetValue<E, BigInt> getVal) =>
+      fold(BigInt.zero, (sum, e) => sum + getVal(e));
 }
 
 /// Extension methods for [Iterable] of int.

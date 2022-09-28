@@ -60,13 +60,13 @@ by iteratively combining its using the provided function.
 
 * `maxOf()` - returns max of values by elements.
 * `minOf()` - returns min of values by elements.
-* `sumOf()`/`sumOfDouble()` - returns sum of values by elements.
+* `sumOf()`/`sumOfDouble()`/`sumOfBigInt` - returns sum of values by elements.
 * `avgOf()`/`avgOfDouble()` - returns the average value of values by elements.
 
 There are specific version of methods for Iterables of num (`int` and `double`):
 
-* `max()`.
-* `min()`.
+* `max()` (also for BigInt).
+* `min()` (also for BigInt).
 * `sum()`.
 * `avg()`.
 

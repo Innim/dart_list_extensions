@@ -1,5 +1,9 @@
 ## Next release
 
+## [1.0.5] - 2020-09-27
+
+* Added methods `sumOfBigInt()` and `max()`, `min()` for Iterable<BigInt>.
+
 ## [1.0.4] - 2020-10-28
 
 * Method `List.addIfNotNull()` - adds element to the end of this list if this element is not null.
