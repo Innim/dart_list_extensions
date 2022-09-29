@@ -1,8 +1,12 @@
 ## Next release
 
-## [1.0.5] - 2022-09-28
+## [1.0.6] - 2022-09-29
 
 * Method `Iterable.mapIndex()` - creates a new iterable by passing each element and index to a callback.
+
+## [1.0.5] - 2020-09-27
+
+* Added methods `sumOfBigInt()` and `max()`, `min()` for Iterable<BigInt>.
 
 ## [1.0.4] - 2020-10-28
 

@@ -1,11 +1,13 @@
 # list_ext
 
 [![pub package](https://img.shields.io/pub/v/list_ext)](https://pub.dartlang.org/packages/list_ext)
-![Dart CI](https://github.com/Innim/dart_list_extensions/workflows/Dart%20CI/badge.svg?branch=master)
+[![Analyze & Test](https://github.com/Innim/dart_list_extensions/actions/workflows/dart.yml/badge.svg?branch=master)](https://github.com/Innim/dart_list_extensions/actions/workflows/dart.yml)
+[![innim lint](https://img.shields.io/badge/style-innim_lint-40c4ff.svg)](https://pub.dev/packages/innim_lint)
 
 Dart extension method for Iterable and List.
 
 ## Usage
+
 To use this plugin, add `list_ext` as a [dependency in your pubspec.yaml file](https://flutter.dev/platform-plugins/).
 
 Than add `import 'package:list_ext/list_ext.dart';` to the file for use extension methods.
@@ -61,13 +63,13 @@ by iteratively combining its using the provided function.
 
 * `maxOf()` - returns max of values by elements.
 * `minOf()` - returns min of values by elements.
-* `sumOf()`/`sumOfDouble()` - returns sum of values by elements.
+* `sumOf()`/`sumOfDouble()`/`sumOfBigInt` - returns sum of values by elements.
 * `avgOf()`/`avgOfDouble()` - returns the average value of values by elements.
 
 There are specific version of methods for Iterables of num (`int` and `double`):
 
-* `max()`.
-* `min()`.
+* `max()` (also for BigInt).
+* `min()` (also for BigInt).
 * `sum()`.
 * `avg()`.
 
