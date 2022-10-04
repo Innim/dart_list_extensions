@@ -1,8 +1,8 @@
 ## Next release
 
-## [1.0.6] - 2022-09-29
+## [1.0.6] - 2022-10-04
 
-* Method `Iterable.mapIndex()` - creates a new iterable by passing each element and index to a callback.
+* Method `Iterable.mapIndex()` - creates a new iterable by passing each element and index to a callback. Thanks to [@killermonk](https://github.com/killermonk).
 
 ## [1.0.5] - 2022-09-27
 
